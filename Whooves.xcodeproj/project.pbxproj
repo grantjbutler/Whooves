@@ -1,0 +1,249 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E3E14B7D27900BB102C /* Foundation.framework */; };
+		C37E2E4214B7D27900BB102C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4114B7D27900BB102C /* main.m */; };
+		C37E2E4614B7D27900BB102C /* Whooves.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37E2E4514B7D27900BB102C /* Whooves.1 */; };
+		C37E2E4E14B7D39C00BB102C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */; };
+		C37E2E5114B7D3A900BB102C /* IRCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E5014B7D3A900BB102C /* IRCConnection.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C37E2E3814B7D27900BB102C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				C37E2E4614B7D27900BB102C /* Whooves.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C37E2E3A14B7D27900BB102C /* Whooves */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Whooves; sourceTree = BUILT_PRODUCTS_DIR; };
+		C37E2E3E14B7D27900BB102C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C37E2E4114B7D27900BB102C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C37E2E4414B7D27900BB102C /* Whooves-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Whooves-Prefix.pch"; sourceTree = "<group>"; };
+		C37E2E4514B7D27900BB102C /* Whooves.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Whooves.1; sourceTree = "<group>"; };
+		C37E2E4C14B7D39C00BB102C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		C37E2E4F14B7D3A900BB102C /* IRCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCConnection.h; sourceTree = "<group>"; };
+		C37E2E5014B7D3A900BB102C /* IRCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCConnection.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C37E2E3714B7D27900BB102C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C37E2E2F14B7D27900BB102C = {
+			isa = PBXGroup;
+			children = (
+				C37E2E4014B7D27900BB102C /* Whooves */,
+				C37E2E3D14B7D27900BB102C /* Frameworks */,
+				C37E2E3B14B7D27900BB102C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C37E2E3B14B7D27900BB102C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C37E2E3A14B7D27900BB102C /* Whooves */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C37E2E3D14B7D27900BB102C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C37E2E3E14B7D27900BB102C /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C37E2E4014B7D27900BB102C /* Whooves */ = {
+			isa = PBXGroup;
+			children = (
+				C37E2E4C14B7D39C00BB102C /* GCDAsyncSocket.h */,
+				C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */,
+				C37E2E4F14B7D3A900BB102C /* IRCConnection.h */,
+				C37E2E5014B7D3A900BB102C /* IRCConnection.m */,
+				C37E2E4114B7D27900BB102C /* main.m */,
+				C37E2E4514B7D27900BB102C /* Whooves.1 */,
+				C37E2E4314B7D27900BB102C /* Supporting Files */,
+			);
+			path = Whooves;
+			sourceTree = "<group>";
+		};
+		C37E2E4314B7D27900BB102C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C37E2E4414B7D27900BB102C /* Whooves-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C37E2E3914B7D27900BB102C /* Whooves */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C37E2E4914B7D27900BB102C /* Build configuration list for PBXNativeTarget "Whooves" */;
+			buildPhases = (
+				C37E2E3614B7D27900BB102C /* Sources */,
+				C37E2E3714B7D27900BB102C /* Frameworks */,
+				C37E2E3814B7D27900BB102C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Whooves;
+			productName = Whooves;
+			productReference = C37E2E3A14B7D27900BB102C /* Whooves */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C37E2E3114B7D27900BB102C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "iSpeech, Inc.";
+			};
+			buildConfigurationList = C37E2E3414B7D27900BB102C /* Build configuration list for PBXProject "Whooves" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C37E2E2F14B7D27900BB102C;
+			productRefGroup = C37E2E3B14B7D27900BB102C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C37E2E3914B7D27900BB102C /* Whooves */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C37E2E3614B7D27900BB102C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C37E2E4214B7D27900BB102C /* main.m in Sources */,
+				C37E2E4E14B7D39C00BB102C /* GCDAsyncSocket.m in Sources */,
+				C37E2E5114B7D3A900BB102C /* IRCConnection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C37E2E4714B7D27900BB102C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C37E2E4814B7D27900BB102C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C37E2E4A14B7D27900BB102C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Whooves/Whooves-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C37E2E4B14B7D27900BB102C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Whooves/Whooves-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C37E2E3414B7D27900BB102C /* Build configuration list for PBXProject "Whooves" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C37E2E4714B7D27900BB102C /* Debug */,
+				C37E2E4814B7D27900BB102C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C37E2E4914B7D27900BB102C /* Build configuration list for PBXNativeTarget "Whooves" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C37E2E4A14B7D27900BB102C /* Debug */,
+				C37E2E4B14B7D27900BB102C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C37E2E3114B7D27900BB102C /* Project object */;
+}
