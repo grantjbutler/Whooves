@@ -8,9 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
+#import "IRCBot.h"
+
 int main (int argc, const char * argv[]) {
 	@autoreleasepool {
+		IRCBot *bot = [[IRCBot alloc] init];
 		
+		bot.nick = @"Whooves";
+		bot.user = @"Whooves";
+		
+		[bot connectToHost:@"irc.freenode.net" port:6667];
+		
+		[[NSRunLoop currentRunLoop] run];
+		
+//		dispatch_queue_t mainQueue = dispatch_get_main_queue();
+//		
+//		dispatch_async(mainQueue, ^{
+//			IRCBot *bot = [[IRCBot alloc] init];
+//			[bot connectToHost:@"irc.freenode.net" port:6667];
+//		});
+//		
+//		dispatch_main();
 	}
 	
     return 0;

@@ -10,8 +10,25 @@
 
 #import "GCDAsyncSocket.h"
 
-@interface IRCConnection : NSObject
+#import "IRCMessage.h"
+
+@class IRCConnection;
+
+@protocol IRCConnectionDelegate <NSObject>
+
+@optional
+- (void)connection:(IRCConnection *)connection didReceiveMessage:(IRCMessage *)message;
+- (void)connectionDidConnectToServer:(IRCConnection *)connection;
+
+@end
+
+@interface IRCConnection : NSObject <GCDAsyncSocketDelegate>
 
 @property (strong, readonly) GCDAsyncSocket *socket;
+
+@property (weak) id<IRCConnectionDelegate> delegate;
+
+- (BOOL)connectToHost:(NSString *)host port:(NSUInteger)port error:(NSError **)error;
+- (void)write:(NSString *)string;
 
 @end

@@ -10,8 +10,12 @@
 		C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E3E14B7D27900BB102C /* Foundation.framework */; };
 		C37E2E4214B7D27900BB102C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4114B7D27900BB102C /* main.m */; };
 		C37E2E4614B7D27900BB102C /* Whooves.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37E2E4514B7D27900BB102C /* Whooves.1 */; };
-		C37E2E4E14B7D39C00BB102C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */; };
+		C37E2E4E14B7D39C00BB102C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C37E2E5114B7D3A900BB102C /* IRCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E5014B7D3A900BB102C /* IRCConnection.m */; };
+		C37E2E5814B7DE2600BB102C /* IRCBot.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E5714B7DE2600BB102C /* IRCBot.m */; };
+		C37E2E5B14B7DFAB00BB102C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5A14B7DFAB00BB102C /* Security.framework */; };
+		C37E2E5F14B7DFEA00BB102C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */; };
+		C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E6114B7E75900BB102C /* IRCMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +41,13 @@
 		C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		C37E2E4F14B7D3A900BB102C /* IRCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCConnection.h; sourceTree = "<group>"; };
 		C37E2E5014B7D3A900BB102C /* IRCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCConnection.m; sourceTree = "<group>"; };
+		C37E2E5614B7DE2600BB102C /* IRCBot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCBot.h; sourceTree = "<group>"; };
+		C37E2E5714B7DE2600BB102C /* IRCBot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCBot.m; sourceTree = "<group>"; };
+		C37E2E5A14B7DFAB00BB102C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		C37E2E6014B7E75900BB102C /* IRCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCMessage.h; sourceTree = "<group>"; };
+		C37E2E6114B7E75900BB102C /* IRCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37E2E5F14B7DFEA00BB102C /* CoreServices.framework in Frameworks */,
+				C37E2E5B14B7DFAB00BB102C /* Security.framework in Frameworks */,
 				C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +67,9 @@
 		C37E2E2F14B7D27900BB102C = {
 			isa = PBXGroup;
 			children = (
+				C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */,
+				C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */,
+				C37E2E5A14B7DFAB00BB102C /* Security.framework */,
 				C37E2E4014B7D27900BB102C /* Whooves */,
 				C37E2E3D14B7D27900BB102C /* Frameworks */,
 				C37E2E3B14B7D27900BB102C /* Products */,
@@ -81,8 +97,12 @@
 			children = (
 				C37E2E4C14B7D39C00BB102C /* GCDAsyncSocket.h */,
 				C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */,
+				C37E2E5614B7DE2600BB102C /* IRCBot.h */,
+				C37E2E5714B7DE2600BB102C /* IRCBot.m */,
 				C37E2E4F14B7D3A900BB102C /* IRCConnection.h */,
 				C37E2E5014B7D3A900BB102C /* IRCConnection.m */,
+				C37E2E6014B7E75900BB102C /* IRCMessage.h */,
+				C37E2E6114B7E75900BB102C /* IRCMessage.m */,
 				C37E2E4114B7D27900BB102C /* main.m */,
 				C37E2E4514B7D27900BB102C /* Whooves.1 */,
 				C37E2E4314B7D27900BB102C /* Supporting Files */,
@@ -152,6 +172,8 @@
 				C37E2E4214B7D27900BB102C /* main.m in Sources */,
 				C37E2E4E14B7D39C00BB102C /* GCDAsyncSocket.m in Sources */,
 				C37E2E5114B7D3A900BB102C /* IRCConnection.m in Sources */,
+				C37E2E5814B7DE2600BB102C /* IRCBot.m in Sources */,
+				C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +264,7 @@
 				C37E2E4B14B7D27900BB102C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
