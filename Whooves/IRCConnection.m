@@ -11,7 +11,7 @@
 @implementation IRCConnection{
 	dispatch_queue_t p_delegateQueue;
 	
-	NSMutableString *p_buffer;
+	NSMutableArray *p_buffer;
 }
 
 @synthesize socket = _socket;
@@ -20,7 +20,7 @@
 - (id)init {
 	if((self = [super init])) {
 		p_delegateQueue = dispatch_queue_create("com.whooves.delegateQueue", NULL);
-		p_buffer = [[NSMutableString alloc] init];
+		p_buffer = [[NSMutableArray alloc] init];
 		
 		_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:p_delegateQueue];
 	}
@@ -32,13 +32,24 @@
 	return [_socket connectToHost:host onPort:port error:error];
 }
 
-- (void)write:(NSString *)string {
+- (void)write:(NSString *)format, ... {
+	va_list list;
+	va_start(list, format);
+	
+	NSString *string = [[NSString alloc] initWithFormat:format arguments:list];
+	
+	va_end(list);
+	
 	NSLog(@"> %@", string);
 	
 	NSMutableData *data = [[string dataUsingEncoding:NSASCIIStringEncoding] mutableCopy];
 	[data appendData:[GCDAsyncSocket CRLFData]];
 	
-	[_socket writeData:data withTimeout:-1 tag:1];
+	if([_socket isConnected]) {
+		[_socket writeData:data withTimeout:-1 tag:1];
+	} else {
+		[p_buffer addObject:data];
+	}
 }
 
 #pragma mark - GCDAsyncSocket Delegate Methods
@@ -47,6 +58,12 @@
 	if(self.delegate) {
 		[self.delegate connectionDidConnectToServer:self];
 	}
+	
+	for(NSData *data in p_buffer) {
+		[_socket writeData:data withTimeout:-1 tag:1];
+	}
+	
+	[p_buffer removeAllObjects];
 	
 	[sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:-1 tag:0];
 }

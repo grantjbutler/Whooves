@@ -14,6 +14,13 @@
 @property (strong, readonly) NSString *command;
 @property (strong, readonly) NSArray *args;
 
+@property (strong, readonly) NSString *nick;
+@property (strong, readonly) NSString *channel;
+
+@property (strong, readonly) NSString *message;
+
+@property (readonly, getter = isNumeric) BOOL numeric;
+
 - (id)initWithString:(NSString *)string;
 
 @end

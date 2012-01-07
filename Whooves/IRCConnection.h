@@ -29,6 +29,6 @@
 @property (weak) id<IRCConnectionDelegate> delegate;
 
 - (BOOL)connectToHost:(NSString *)host port:(NSUInteger)port error:(NSError **)error;
-- (void)write:(NSString *)string;
+- (void)write:(NSString *)format, ...;
 
 @end

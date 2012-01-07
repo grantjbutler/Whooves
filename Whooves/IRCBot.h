@@ -18,6 +18,10 @@
 @property (strong) NSString *nick;
 @property (strong) NSString *pass;
 
++ (IRCBot *)sharedBot;
+
 - (void)connectToHost:(NSString *)host port:(NSUInteger)port;
+
+- (void)join:(NSString *)channel;
 
 @end
