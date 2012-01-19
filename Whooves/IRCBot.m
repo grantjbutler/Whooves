@@ -8,9 +8,6 @@
 
 #import "IRCBot.h"
 
-#import "WHAction.h"
-#import "WHAnswer.h"
-
 #import "WHPluginManager.h"
 
 @implementation IRCBot
@@ -30,6 +27,12 @@
 			nil];
 }
 
++ (NSString *)randomUnknownQuestionResponse {
+	NSArray *unknownQuestionResponses = [[self class] unknownQuestionResponses] ;
+	
+	return [unknownQuestionResponses objectAtIndex:arc4random() % [unknownQuestionResponses count]];
+}
+
 + (NSArray *)unknownActionResponses {
 	return [NSArray arrayWithObjects:
 			@"I don't know how to do that.",
@@ -37,6 +40,12 @@
 			@"I can't do that! I'm not a mad man with a box!",
 			@"It'd be easier for me to grow wings and fly than for me to do that.",
 			nil];
+}
+
++ (NSString *)randomUnknownActionResponse {
+	NSArray *unknownActionResponses = [[self class] unknownActionResponses] ;
+	
+	return [unknownActionResponses objectAtIndex:arc4random() % [unknownActionResponses count]];
 }
 
 + (NSString *)userAgent {
@@ -76,14 +85,32 @@
 }
 
 
-- (void)handleObject:(id)obj forMessage:(IRCMessage *)message {
-	if(![[WHPluginManager sharedManager] havePluginsHandleObject:obj forMessage:message]) {
-		if([obj isKindOfClass:[WHAction class]]) {
-			[_connection write:@"PRIVMSG %@ :%@", message.channel, [[[self class] unknownActionResponses] objectAtIndex:arc4random() % [[[self class] unknownActionResponses] count]]];
-		} else if([obj isKindOfClass:[WHAnswer class]]) {
-			[_connection write:@"PRIVMSG %@ :%@", message.channel, [[[self class] unknownQuestionResponses] objectAtIndex:arc4random() % [[[self class] unknownQuestionResponses] count]]];
+//- (void)handleObject:(id)obj forMessage:(IRCMessage *)message {
+//	if(![[WHPluginManager sharedManager] havePluginsHandleObject:obj forMessage:message]) {
+//		if([obj isKindOfClass:[WHAction class]]) {
+//			[_connection write:@"PRIVMSG %@ :%@", message.channel, [[self class] randomUnknownQuestionResponse]];
+//		} else if([obj isKindOfClass:[WHAnswer class]]) {
+//			[_connection write:@"PRIVMSG %@ :%@", message.channel, [[self class] randomUnknownQuestionResponse]];
+//		} else {
+//			[_connection write:@"PRIVMSG %@ :Derp!", message.channel];
+//		}
+//	}
+//}
+
+- (void)handleMessage:(IRCMessage *)message {
+	if(![[WHPluginManager sharedManager] havePluginsHandleMessage:message]) {
+		if([[message tags] count] > 2 && [[[message tags] objectAtIndex:0] isEqualToString:self.nick]) {
+			WHTag *tag = [message.tags objectAtIndex:1];
+			
+			if(tag.tag == NSLinguisticTagPronoun) {
+				[_connection write:@"PRIVMSG %@ :%@", message.target, [[self class] randomUnknownQuestionResponse]];
+			} else if(tag.tag == NSLinguisticTagVerb) {
+				[_connection write:@"PRIVMSG %@ :%@", message.target, [[self class] randomUnknownActionResponse]];
+			} else {
+				[_connection write:@"PRIVMSG %@ :Derp!", message.target];
+			}
 		} else {
-			[_connection write:@"PRIVMSG %@ :Derp!", message.channel];
+			[_connection write:@"PRIVMSG %@ :Derp!", message.target];
 		}
 	}
 }
@@ -91,83 +118,16 @@
 #pragma mark - IRCConnection Delegate Methods
 
 - (void)connectionDidConnectToServer:(IRCConnection *)connection {
-	[connection write:@"USER %@ %@ %@ :%@, created by legosjedi.", self.nick, [[self class] userAgent], self.nick,[[self class] userAgent]];
+	[connection write:@"USER %@ %@ %@ :%@, created by legosjedi.", self.nick, [[self class] userAgent], self.nick, [[self class] userAgent]];
 	[connection write:@"NICK %@", self.nick];
 }
 
 - (void)connection:(IRCConnection *)connection didReceiveMessage:(IRCMessage *)message {
 	if([message.command isEqualToString:@"PRIVMSG"]) {
-		if([message.message hasPrefix:self.nick]) {
-			NSLog(@"%@", message.message);
-			
-			NSLinguisticTagger *lingusticTagger = [[NSLinguisticTagger alloc] initWithTagSchemes:[NSArray arrayWithObject:NSLinguisticTagSchemeLexicalClass] options:NSLinguisticTaggerJoinNames | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerOmitWhitespace];
-			[lingusticTagger setString:message.message];
-			
-			__block id obj = nil;
-			__block int tagNum = -1;
-			
-			[lingusticTagger enumerateTagsInRange:NSMakeRange(0, [message.message length]) scheme:NSLinguisticTagSchemeLexicalClass options:NSLinguisticTaggerJoinNames | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerOmitWhitespace usingBlock:^(NSString *tag, NSRange tokenRange, NSRange sentenceRange, BOOL *stop) {
-				
-				NSLog(@"%@ - %@", tag, [message.message substringWithRange:tokenRange]);
-				
-				tagNum++;
-				
-				if(tokenRange.location == 0) {
-					return; // This is "WHOOVES".
-				}
-				
-				if(!obj && tagNum == 1) {
-					if(tag == NSLinguisticTagVerb) {
-						obj = [[WHAction alloc] init];
-						
-						((WHAction *)obj).verb = [message.message substringWithRange:tokenRange];
-					} else if(tag == NSLinguisticTagPronoun) {
-						obj = [[WHAnswer alloc] init];
-						
-						((WHAnswer *)obj).pronoun = [message.message substringWithRange:tokenRange];
-					}
-				}
-				
-				if([obj isKindOfClass:[WHAction class]]) {
-					WHAction *action = (WHAction *)obj;
-					
-					if(!action.target && (tag == NSLinguisticTagNoun || tag == NSLinguisticTagPronoun)) {
-						NSString *target = [message.message substringWithRange:tokenRange];
-						
-						if(tag == NSLinguisticTagNoun) {
-							action.target = target;
-						} else if(tag == NSLinguisticTagPronoun) {
-							if([target isEqualToString:@"me"]) {
-								action.target = message.nick;
-							} else if([target isEqualToString:@"us"]) {
-								action.target = message.channel;
-							}
-						}
-					} else if(!action.what && tag == NSLinguisticTagNoun) {
-						action.what = [message.message substringWithRange:tokenRange];
-					} else if(!action.preposition && tag == NSLinguisticTagPreposition) {
-						action.preposition = [message.message substringWithRange:tokenRange];
-					} else if(!action.condition && action.preposition && tag == NSLinguisticTagNoun) {
-						action.condition = [message.message substringWithRange:tokenRange];
-					}
-				} else if([obj isKindOfClass:[WHAnswer class]]) {
-					WHAnswer *answer = (WHAnswer *)obj;
-					
-					if(!answer.what && tag == NSLinguisticTagNoun) {
-						answer.what = [message.message substringWithRange:tokenRange];
-					} else if(!answer.preposition && tag == NSLinguisticTagPreposition) {
-						answer.preposition = [message.message substringWithRange:tokenRange];
-					} else if(!answer.condition && answer.preposition && tag == NSLinguisticTagNoun) {
-						answer.condition = [message.message substringWithRange:tokenRange];
-					}
-				}
-			}];
-			
-			if([obj isKindOfClass:[WHAnswer class]]) {
-				((WHAnswer *)obj).target = message.nick;
+		if([[message tags] count] > 0) {
+			if((message.channel && [[[message tags] objectAtIndex:0] isEqualToString:self.nick])) {
+				[self handleMessage:message];
 			}
-			
-			[self handleObject:obj forMessage:message];
 		}
 	}
 }

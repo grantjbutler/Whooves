@@ -10,60 +10,85 @@
 
 @implementation WHDateTime
 
-- (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message {
-	NSMutableString *response = nil;
+- (BOOL)handleMessage:(IRCMessage *)message {
+	NSArray *tags = message.tags;
 	
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	NSDate *date = [NSDate date];
+	NSInteger index = 1;
 	
-	NSString *type = @"";
+	WHTag *tag = [tags objectAtIndex:index];
 	
-	NSString *target = nil;
+	if([tag tag] != NSLinguisticTagPronoun && [tag tag] != NSLinguisticTagVerb) {
+		return NO;
+	}
 	
-	if([obj isKindOfClass:[WHAction class]]) {
-		WHAction *action = (WHAction *)obj;
-		
-		if([action.verb isEqualToString:@"tell"]) {
-			type = action.what;
+	NSString *target = message.nick;
+	NSString *type = nil;
+	
+	if([tag tag] == NSLinguisticTagPronoun && [[tag word] isEqualToString:@"what"]) {
+		for(; index < [tags count] && !type; index++) {
+			tag = [tags objectAtIndex:index];
 			
-			target = action.target;
-			
-			if(action.preposition) {
-				if([action.preposition isEqualToString:@"in"]) {
-					if([action.condition length] == 3) {
-						// We have a possible timezone. All right!
-						
-						timeZone = [NSTimeZone timeZoneWithAbbreviation:action.condition];
-					} else {
-						// TODO: A location. Try to figure out what timezone it's in.
-					}
-				}
+			if([tag tag] == NSLinguisticTagNoun) {
+				type = [tag word];
 			}
 		}
-	} else if([obj isKindOfClass:[WHAnswer class]]) {
-		WHAnswer *answer = (WHAnswer *)obj;
+	} else if([tag tag] == NSLinguisticTagVerb && [[tag word] isEqualToString:@"tell"]) {
+		index++;
 		
-		if([answer.pronoun isEqualToString:@"what"]) {
-			type = answer.what;
+		if(index < [tags count]) {
+			tag = [tags objectAtIndex:index];
 			
-			target = answer.target;
-			
-			if(answer.preposition) {
-				if([answer.preposition isEqualToString:@"in"]) {
-					if([answer.condition length] == 3) {
-						// We have a possible timezone. All right!
-						
-						timeZone = [NSTimeZone timeZoneWithAbbreviation:answer.condition];
-					} else {
-						// TODO: A location. Try to figure out what timezone it's in.
+			if([tag tag] == NSLinguisticTagNoun || [tag tag] == NSLinguisticTagPronoun) {
+				if([[tag word] isEqualToString:@"me"]) {
+					target = message.nick;
+				} else if([[tag word] isEqualToString:@"us"]) {
+					target = message.channel;
+				} else {
+					target = tag.word;
+				}
+				
+				index += 2; // The next one should be "the", so skip that.
+				
+				if(index < [tags count]) {
+					tag = [tags objectAtIndex:index];
+					
+					if([tag tag] == NSLinguisticTagNoun) {
+						type = [tag word];
 					}
 				}
 			}
 		}
 	}
 	
-	if([type length] == 0 || (![type isEqualToString:@"date"] && ![type isEqualToString:@"time"])) {
+	if([type length] == 0 || !([type isEqualToString:@"date"] || [type isEqualToString:@"time"])) {
 		return NO;
+	}
+	
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	NSDate *date = [NSDate date];
+	
+	index = [tags count] - 2;
+	
+	if(index < [tags count]) {
+		tag = [tags objectAtIndex:index];
+		
+		if([tag tag] == NSLinguisticTagPreposition && [[tag word] isEqualToString:@"in"]) {
+			index++;
+			
+			if(index < [tags count]) {
+				tag = [tags objectAtIndex:index];
+				
+				if([[tag word] length] == 3) {
+					// Possible time zone.
+					
+					timeZone = [NSTimeZone timeZoneWithAbbreviation:[tag word]];
+					
+					if(!timeZone) {
+						timeZone = [NSTimeZone systemTimeZone];
+					}
+				}
+			}
+		}
 	}
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -77,7 +102,7 @@
 		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	}
 	
-	response = [NSMutableString stringWithFormat:@"The %@ is %@", type, [dateFormatter stringFromDate:date]];
+	NSMutableString *response = [NSMutableString stringWithFormat:@"The %@ is %@", type, [dateFormatter stringFromDate:date]];
 	
 	if([target hasPrefix:@"#"]) {
 		[response appendString:@"."];
@@ -85,11 +110,7 @@
 		[response appendFormat:@", %@.", target];
 	}
 	
-	if(message.channel) {
-		[[[IRCBot sharedBot] connection] write:@"PRIVMSG %@ :%@", message.channel, response];
-	} else {
-		[[[IRCBot sharedBot] connection] write:@"PRIVMSG %@ :%@", message.nick, response];
-	}
+	[[[IRCBot sharedBot] connection] write:@"PRIVMSG %@ :%@", message.target, response];
 	
 	return YES;
 }

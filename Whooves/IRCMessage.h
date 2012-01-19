@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WHTag.h"
+
 @interface IRCMessage : NSObject
 
 @property (strong, readonly) NSString *prefix;
@@ -17,7 +19,11 @@
 @property (strong, readonly) NSString *nick;
 @property (strong, readonly) NSString *channel;
 
+@property (strong, readonly) NSString *target;
+
 @property (strong, readonly) NSString *message;
+
+@property (strong, readonly) NSArray *tags;
 
 @property (readonly, getter = isNumeric) BOOL numeric;
 

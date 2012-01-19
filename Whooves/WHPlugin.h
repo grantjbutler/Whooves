@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WHAction.h"
-#import "WHAnswer.h"
-
 #import "IRCMessage.h"
 
 #import "IRCBot.h"
@@ -18,6 +15,8 @@
 @interface WHPlugin : NSObject
 
 - (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message;
+- (BOOL)handleMessage:(IRCMessage *)message;
+
 - (NSString *)helpDescription;
 
 @end

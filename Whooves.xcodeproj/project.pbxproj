@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C338941F14C7D95100B54442 /* WHWho.m in Sources */ = {isa = PBXBuildFile; fileRef = C338941E14C7D95100B54442 /* WHWho.m */; };
 		C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E3E14B7D27900BB102C /* Foundation.framework */; };
 		C37E2E4214B7D27900BB102C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4114B7D27900BB102C /* main.m */; };
 		C37E2E4614B7D27900BB102C /* Whooves.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37E2E4514B7D27900BB102C /* Whooves.1 */; };
@@ -16,30 +17,11 @@
 		C37E2E5B14B7DFAB00BB102C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5A14B7DFAB00BB102C /* Security.framework */; };
 		C37E2E5F14B7DFEA00BB102C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */; };
 		C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E6114B7E75900BB102C /* IRCMessage.m */; };
-		C37E2E6514B7FC1500BB102C /* WHAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E6414B7FC1500BB102C /* WHAction.m */; };
-		C37E2E6814B7FC1D00BB102C /* WHAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E6714B7FC1D00BB102C /* WHAnswer.m */; };
-		C37E2E7714B8018800BB102C /* JSCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E7414B8017900BB102C /* JSCocoa.framework */; };
 		C37E2E7D14B8035800BB102C /* WHPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E7C14B8035800BB102C /* WHPluginManager.m */; };
 		C37E2E8014B804DC00BB102C /* WHDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E7F14B804DC00BB102C /* WHDateTime.m */; };
 		C37E2E8214B8063100BB102C /* WHPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E8114B8063100BB102C /* WHPlugin.m */; };
+		C3B534DD14BA6FEA00B02EE8 /* WHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B534DC14BA6FE900B02EE8 /* WHTag.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C37E2E7314B8017900BB102C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C37E2E6C14B8017900BB102C /* JSCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = JSCocoa;
-		};
-		C37E2E7514B8018500BB102C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C37E2E6C14B8017900BB102C /* JSCocoa.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = JSCocoa;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C37E2E3814B7D27900BB102C /* CopyFiles */ = {
@@ -55,6 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C338941D14C7D95100B54442 /* WHWho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWho.h; sourceTree = "<group>"; };
+		C338941E14C7D95100B54442 /* WHWho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWho.m; sourceTree = "<group>"; };
 		C37E2E3A14B7D27900BB102C /* Whooves */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Whooves; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37E2E3E14B7D27900BB102C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C37E2E4114B7D27900BB102C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,17 +55,14 @@
 		C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		C37E2E6014B7E75900BB102C /* IRCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCMessage.h; sourceTree = "<group>"; };
 		C37E2E6114B7E75900BB102C /* IRCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCMessage.m; sourceTree = "<group>"; };
-		C37E2E6314B7FC1500BB102C /* WHAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHAction.h; sourceTree = "<group>"; };
-		C37E2E6414B7FC1500BB102C /* WHAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHAction.m; sourceTree = "<group>"; };
-		C37E2E6614B7FC1C00BB102C /* WHAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHAnswer.h; sourceTree = "<group>"; };
-		C37E2E6714B7FC1D00BB102C /* WHAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHAnswer.m; sourceTree = "<group>"; };
-		C37E2E6C14B8017900BB102C /* JSCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSCocoa.xcodeproj; path = "../../SourceCode/Obj-C/jscocoa/JSCocoa/JSCocoa.xcodeproj"; sourceTree = "<group>"; };
 		C37E2E7814B8027E00BB102C /* WHPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlugin.h; sourceTree = "<group>"; };
 		C37E2E7B14B8035800BB102C /* WHPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPluginManager.h; sourceTree = "<group>"; };
 		C37E2E7C14B8035800BB102C /* WHPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPluginManager.m; sourceTree = "<group>"; };
 		C37E2E7E14B804DC00BB102C /* WHDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDateTime.h; sourceTree = "<group>"; };
 		C37E2E7F14B804DC00BB102C /* WHDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDateTime.m; sourceTree = "<group>"; };
 		C37E2E8114B8063100BB102C /* WHPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlugin.m; sourceTree = "<group>"; };
+		C3B534DB14BA6FE900B02EE8 /* WHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHTag.h; sourceTree = "<group>"; };
+		C3B534DC14BA6FE900B02EE8 /* WHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHTag.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37E2E7714B8018800BB102C /* JSCocoa.framework in Frameworks */,
 				C37E2E5F14B7DFEA00BB102C /* CoreServices.framework in Frameworks */,
 				C37E2E5B14B7DFAB00BB102C /* Security.framework in Frameworks */,
 				C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */,
@@ -102,7 +82,6 @@
 		C37E2E2F14B7D27900BB102C = {
 			isa = PBXGroup;
 			children = (
-				C37E2E6C14B8017900BB102C /* JSCocoa.xcodeproj */,
 				C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */,
 				C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */,
 				C37E2E5A14B7DFAB00BB102C /* Security.framework */,
@@ -140,16 +119,16 @@
 				C37E2E6014B7E75900BB102C /* IRCMessage.h */,
 				C37E2E6114B7E75900BB102C /* IRCMessage.m */,
 				C37E2E4114B7D27900BB102C /* main.m */,
-				C37E2E6314B7FC1500BB102C /* WHAction.h */,
-				C37E2E6414B7FC1500BB102C /* WHAction.m */,
-				C37E2E6614B7FC1C00BB102C /* WHAnswer.h */,
-				C37E2E6714B7FC1D00BB102C /* WHAnswer.m */,
 				C37E2E7814B8027E00BB102C /* WHPlugin.h */,
 				C37E2E8114B8063100BB102C /* WHPlugin.m */,
 				C37E2E7B14B8035800BB102C /* WHPluginManager.h */,
 				C37E2E7C14B8035800BB102C /* WHPluginManager.m */,
+				C3B534DB14BA6FE900B02EE8 /* WHTag.h */,
+				C3B534DC14BA6FE900B02EE8 /* WHTag.m */,
 				C37E2E7E14B804DC00BB102C /* WHDateTime.h */,
 				C37E2E7F14B804DC00BB102C /* WHDateTime.m */,
+				C338941D14C7D95100B54442 /* WHWho.h */,
+				C338941E14C7D95100B54442 /* WHWho.m */,
 				C37E2E4514B7D27900BB102C /* Whooves.1 */,
 				C37E2E4314B7D27900BB102C /* Supporting Files */,
 			);
@@ -162,14 +141,6 @@
 				C37E2E4414B7D27900BB102C /* Whooves-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C37E2E6D14B8017900BB102C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C37E2E7414B8017900BB102C /* JSCocoa.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +157,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C37E2E7614B8018500BB102C /* PBXTargetDependency */,
 			);
 			name = Whooves;
 			productName = Whooves;
@@ -212,28 +182,12 @@
 			mainGroup = C37E2E2F14B7D27900BB102C;
 			productRefGroup = C37E2E3B14B7D27900BB102C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C37E2E6D14B8017900BB102C /* Products */;
-					ProjectRef = C37E2E6C14B8017900BB102C /* JSCocoa.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C37E2E3914B7D27900BB102C /* Whooves */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C37E2E7414B8017900BB102C /* JSCocoa.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JSCocoa.framework;
-			remoteRef = C37E2E7314B8017900BB102C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C37E2E3614B7D27900BB102C /* Sources */ = {
@@ -245,23 +199,15 @@
 				C37E2E5114B7D3A900BB102C /* IRCConnection.m in Sources */,
 				C37E2E5814B7DE2600BB102C /* IRCBot.m in Sources */,
 				C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */,
-				C37E2E6514B7FC1500BB102C /* WHAction.m in Sources */,
-				C37E2E6814B7FC1D00BB102C /* WHAnswer.m in Sources */,
 				C37E2E7D14B8035800BB102C /* WHPluginManager.m in Sources */,
 				C37E2E8014B804DC00BB102C /* WHDateTime.m in Sources */,
 				C37E2E8214B8063100BB102C /* WHPlugin.m in Sources */,
+				C3B534DD14BA6FEA00B02EE8 /* WHTag.m in Sources */,
+				C338941F14C7D95100B54442 /* WHWho.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C37E2E7614B8018500BB102C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JSCocoa;
-			targetProxy = C37E2E7514B8018500BB102C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C37E2E4714B7D27900BB102C /* Debug */ = {

@@ -69,12 +69,6 @@
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-	// if ircmsg.find(' PRIVMSG ') != -1:
-	// nick = ircmsg.split('!')[0][1:];
-	// channel = ircmsg.split(' PRIVMSG ')[1].split(' :')[0];
-	//
-	// mess = message.split(":",2)[2];
-	
 	NSString *line = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	
 	NSLog(@"< %@", line);
@@ -82,7 +76,7 @@
 	IRCMessage *message = [[IRCMessage alloc] initWithString:line];
 	
 	if([message.command isEqualToString:@"PING"]) {
-		[self write:[NSString stringWithFormat:@"PONG :%@", [message.args objectAtIndex:0]]];
+		[self write:[NSString stringWithFormat:@"PONG %@", [message.args objectAtIndex:0]]];
 	} else {
 		if(self.delegate) {
 			[self.delegate connection:self didReceiveMessage:message];

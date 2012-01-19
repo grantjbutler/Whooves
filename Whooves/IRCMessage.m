@@ -38,6 +38,8 @@
 
 @synthesize numeric = _numeric;
 
+@synthesize tags = _tags;
+
 - (id)initWithString:(NSString *)string {
 	if((self = [super init])) {
 		[self p_parse:string];
@@ -113,6 +115,36 @@
 		}
 	}
 }
+
+- (NSArray *)tags {
+	if(self.isNumeric) {
+		return nil;
+	}
 	
+	@synchronized(self) {
+		if(!_tags) {
+			NSMutableArray *tempTags = [[NSMutableArray alloc] init];
+			
+			NSLinguisticTagger *lingusticTagger = [[NSLinguisticTagger alloc] initWithTagSchemes:[NSArray arrayWithObject:NSLinguisticTagSchemeLexicalClass] options:NSLinguisticTaggerJoinNames | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerOmitWhitespace];
+			[lingusticTagger setString:self.message];
+			[lingusticTagger enumerateTagsInRange:NSMakeRange(0, [self.message length]) scheme:NSLinguisticTagSchemeLexicalClass options:NSLinguisticTaggerJoinNames | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerOmitWhitespace usingBlock:^(NSString *tag, NSRange tokenRange, NSRange sentenceRange, BOOL *stop) {
+				WHTag *tagObj = [[WHTag alloc] initWithTag:tag word:[self.message substringWithRange:tokenRange]];
+				[tempTags addObject:tagObj];
+			}];
+			
+			_tags = tempTags;
+		}
+	}
+	
+	return _tags;
+}
+
+- (NSString *)target {
+	if(self.channel) {
+		return self.channel;
+	}
+	
+	return self.nick;
+}
 
 @end

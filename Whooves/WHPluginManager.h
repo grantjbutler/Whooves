@@ -18,6 +18,6 @@
 
 - (void)registerClass:(Class)klass;
 
-- (BOOL)havePluginsHandleObject:(id)obj forMessage:(IRCMessage *)message;
+- (BOOL)havePluginsHandleMessage:(IRCMessage *)message;
 
 @end

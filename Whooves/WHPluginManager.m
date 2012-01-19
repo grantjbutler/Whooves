@@ -37,9 +37,11 @@
 	[p_pluginRegistry addObject:plugin];
 }
 
-- (BOOL)havePluginsHandleObject:(id)obj forMessage:(IRCMessage *)message {
+- (BOOL)havePluginsHandleMessage:(IRCMessage *)message {
+	NSLog(@"%@", message.tags);
+	
 	for(WHPlugin *plugin in p_pluginRegistry) {
-		if([plugin handleObject:obj forMessage:message]) {
+		if([plugin handleMessage:message]) {
 			return YES;
 		}
 	}

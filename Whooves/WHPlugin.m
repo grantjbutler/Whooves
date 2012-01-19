@@ -11,14 +11,17 @@
 
 @implementation WHPlugin
 
-+ (void)initialize {
-	if(self != [WHPlugin class]) {
-		[[WHPluginManager sharedManager] registerClass:self];
-	}
-}
-
+//+ (void)initialize {
+//	if(self != [WHPlugin class]) {
+//		[[WHPluginManager sharedManager] registerClass:self];
+//	}
+//}
 
 - (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message {
+	return NO;
+}
+
+- (BOOL)handleMessage:(IRCMessage *)message {
 	return NO;
 }
 
