@@ -30,5 +30,6 @@
 
 - (BOOL)connectToHost:(NSString *)host port:(NSUInteger)port error:(NSError **)error;
 - (void)write:(NSString *)format, ...;
+- (void)write:(NSString *)format args:(va_list)args;
 
 @end

@@ -14,10 +14,14 @@
 
 @interface WHPluginManager : NSObject
 
+@property (nonatomic, strong, readonly) NSSet *plugins;
+
 + (WHPluginManager *)sharedManager;
 
 - (void)registerClass:(Class)klass;
 
 - (BOOL)havePluginsHandleMessage:(IRCMessage *)message;
+
+- (void)reloadPlugins;
 
 @end

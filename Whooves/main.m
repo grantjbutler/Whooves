@@ -12,20 +12,26 @@
 
 #import "WHPluginManager.h"
 
-#import "WHDateTime.h"
-
 int main (int argc, const char * argv[]) {
 	@autoreleasepool {
-		[[WHPluginManager sharedManager] registerClass:[WHDateTime class]];
+		// TODO: Possibly re-work this to use DDCLI for CLI arg parsing?
+		
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+		NSString *appSupport = [[paths lastObject] stringByAppendingPathComponent:@"Whooves"];
+		
+		NSString *settingsPlist = [appSupport stringByAppendingPathComponent:@"settings.plist"];
 		
 		IRCBot *bot = [IRCBot sharedBot];
 		
-		bot.nick = @"Whooves";
-		bot.user = @"Whooves";
+		[bot loadSettingsFromFile:settingsPlist];
 		
-		[bot connectToHost:@"irc.freenode.net" port:6667];
+		[[WHPluginManager sharedManager] reloadPlugins];
 		
+#ifdef DEBUG
 		[bot join:@"#derpyhooves"];
+#else
+		[bot join:@"#reddit-mlp"];
+#endif
 		
 		[[NSRunLoop currentRunLoop] run];
 	}

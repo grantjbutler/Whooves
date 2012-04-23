@@ -7,21 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C338941F14C7D95100B54442 /* WHWho.m in Sources */ = {isa = PBXBuildFile; fileRef = C338941E14C7D95100B54442 /* WHWho.m */; };
 		C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E3E14B7D27900BB102C /* Foundation.framework */; };
 		C37E2E4214B7D27900BB102C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4114B7D27900BB102C /* main.m */; };
 		C37E2E4614B7D27900BB102C /* Whooves.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37E2E4514B7D27900BB102C /* Whooves.1 */; };
 		C37E2E4E14B7D39C00BB102C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4D14B7D39C00BB102C /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C37E2E5114B7D3A900BB102C /* IRCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E5014B7D3A900BB102C /* IRCConnection.m */; };
 		C37E2E5814B7DE2600BB102C /* IRCBot.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E5714B7DE2600BB102C /* IRCBot.m */; };
-		C37E2E5B14B7DFAB00BB102C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5A14B7DFAB00BB102C /* Security.framework */; };
-		C37E2E5F14B7DFEA00BB102C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */; };
 		C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E6114B7E75900BB102C /* IRCMessage.m */; };
 		C37E2E7D14B8035800BB102C /* WHPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E7C14B8035800BB102C /* WHPluginManager.m */; };
-		C37E2E8014B804DC00BB102C /* WHDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E7F14B804DC00BB102C /* WHDateTime.m */; };
 		C37E2E8214B8063100BB102C /* WHPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E8114B8063100BB102C /* WHPlugin.m */; };
 		C3B534DD14BA6FEA00B02EE8 /* WHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B534DC14BA6FE900B02EE8 /* WHTag.m */; };
+		C3E3184D1544F022001F9EFE /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */; };
+		C3E3184E1544F024001F9EFE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */; };
+		C3E318711544F0D6001F9EFE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5A14B7DFAB00BB102C /* Security.framework */; };
+		C3E318781544F3BE001F9EFE /* WHPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E7B14B8035800BB102C /* WHPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E318791544F3C2001F9EFE /* WHPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E7814B8027E00BB102C /* WHPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E3187A1544F3C7001F9EFE /* WHTag.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B534DB14BA6FE900B02EE8 /* WHTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E3187B1544F3C8001F9EFE /* IRCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E6014B7E75900BB102C /* IRCMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E3187C1544F3CA001F9EFE /* IRCBot.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E5614B7DE2600BB102C /* IRCBot.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3E318831544F610001F9EFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E318821544F610001F9EFE /* Cocoa.framework */; };
+		C3E3188D1544F610001F9EFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3E3188B1544F610001F9EFE /* InfoPlist.strings */; };
+		C3E318B01544F636001F9EFE /* WHCore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318A51544F636001F9EFE /* WHCore.m */; };
+		C3E318B11544F636001F9EFE /* WHDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318A71544F636001F9EFE /* WHDateTime.m */; };
+		C3E318B21544F636001F9EFE /* WHGreeting.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318A91544F636001F9EFE /* WHGreeting.m */; };
+		C3E318B31544F636001F9EFE /* WHOp.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318AB1544F636001F9EFE /* WHOp.m */; };
+		C3E318B41544F636001F9EFE /* WHSilence.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318AD1544F636001F9EFE /* WHSilence.m */; };
+		C3E318B51544F636001F9EFE /* WHWho.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318AF1544F636001F9EFE /* WHWho.m */; };
+		C3E318BC1544F801001F9EFE /* WHCore.whplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3E318811544F610001F9EFE /* WHCore.whplugin */; };
+		C3E318BF1544F8E7001F9EFE /* WHReloadPlugins.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E318BD1544F8E7001F9EFE /* WHReloadPlugins.h */; };
+		C3E318C01544F8E7001F9EFE /* WHReloadPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318BE1544F8E7001F9EFE /* WHReloadPlugins.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C3E318B61544F642001F9EFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C37E2E3114B7D27900BB102C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C37E2E3914B7D27900BB102C;
+			remoteInfo = Whooves;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C37E2E3814B7D27900BB102C /* CopyFiles */ = {
@@ -34,11 +59,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		C3E318BB1544F7FE001F9EFE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(HOME)/Library/Application Support/Whooves/Plugins";
+			dstSubfolderSpec = 0;
+			files = (
+				C3E318BC1544F801001F9EFE /* WHCore.whplugin in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C338941D14C7D95100B54442 /* WHWho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWho.h; sourceTree = "<group>"; };
-		C338941E14C7D95100B54442 /* WHWho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWho.m; sourceTree = "<group>"; };
 		C37E2E3A14B7D27900BB102C /* Whooves */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Whooves; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37E2E3E14B7D27900BB102C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C37E2E4114B7D27900BB102C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,11 +91,31 @@
 		C37E2E7814B8027E00BB102C /* WHPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlugin.h; sourceTree = "<group>"; };
 		C37E2E7B14B8035800BB102C /* WHPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPluginManager.h; sourceTree = "<group>"; };
 		C37E2E7C14B8035800BB102C /* WHPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPluginManager.m; sourceTree = "<group>"; };
-		C37E2E7E14B804DC00BB102C /* WHDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDateTime.h; sourceTree = "<group>"; };
-		C37E2E7F14B804DC00BB102C /* WHDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDateTime.m; sourceTree = "<group>"; };
 		C37E2E8114B8063100BB102C /* WHPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlugin.m; sourceTree = "<group>"; };
 		C3B534DB14BA6FE900B02EE8 /* WHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHTag.h; sourceTree = "<group>"; };
 		C3B534DC14BA6FE900B02EE8 /* WHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHTag.m; sourceTree = "<group>"; };
+		C3E318811544F610001F9EFE /* WHCore.whplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WHCore.whplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3E318821544F610001F9EFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C3E318851544F610001F9EFE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C3E318861544F610001F9EFE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C3E318871544F610001F9EFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C3E3188A1544F610001F9EFE /* WHCore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WHCore-Info.plist"; sourceTree = "<group>"; };
+		C3E3188C1544F610001F9EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C3E3188E1544F610001F9EFE /* WHCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WHCore-Prefix.pch"; sourceTree = "<group>"; };
+		C3E318A41544F636001F9EFE /* WHCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHCore.h; path = WHCore/WHCore.h; sourceTree = "<group>"; };
+		C3E318A51544F636001F9EFE /* WHCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHCore.m; path = WHCore/WHCore.m; sourceTree = "<group>"; };
+		C3E318A61544F636001F9EFE /* WHDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHDateTime.h; path = WHCore/WHDateTime.h; sourceTree = "<group>"; };
+		C3E318A71544F636001F9EFE /* WHDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHDateTime.m; path = WHCore/WHDateTime.m; sourceTree = "<group>"; };
+		C3E318A81544F636001F9EFE /* WHGreeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHGreeting.h; path = WHCore/WHGreeting.h; sourceTree = "<group>"; };
+		C3E318A91544F636001F9EFE /* WHGreeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHGreeting.m; path = WHCore/WHGreeting.m; sourceTree = "<group>"; };
+		C3E318AA1544F636001F9EFE /* WHOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHOp.h; path = WHCore/WHOp.h; sourceTree = "<group>"; };
+		C3E318AB1544F636001F9EFE /* WHOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHOp.m; path = WHCore/WHOp.m; sourceTree = "<group>"; };
+		C3E318AC1544F636001F9EFE /* WHSilence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHSilence.h; path = WHCore/WHSilence.h; sourceTree = "<group>"; };
+		C3E318AD1544F636001F9EFE /* WHSilence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHSilence.m; path = WHCore/WHSilence.m; sourceTree = "<group>"; };
+		C3E318AE1544F636001F9EFE /* WHWho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHWho.h; path = WHCore/WHWho.h; sourceTree = "<group>"; };
+		C3E318AF1544F636001F9EFE /* WHWho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHWho.m; path = WHCore/WHWho.m; sourceTree = "<group>"; };
+		C3E318BD1544F8E7001F9EFE /* WHReloadPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHReloadPlugins.h; sourceTree = "<group>"; };
+		C3E318BE1544F8E7001F9EFE /* WHReloadPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHReloadPlugins.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +123,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37E2E5F14B7DFEA00BB102C /* CoreServices.framework in Frameworks */,
-				C37E2E5B14B7DFAB00BB102C /* Security.framework in Frameworks */,
 				C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */,
+				C3E3184E1544F024001F9EFE /* CoreFoundation.framework in Frameworks */,
+				C3E3184D1544F022001F9EFE /* CoreServices.framework in Frameworks */,
+				C3E318711544F0D6001F9EFE /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E3187E1544F610001F9EFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E318831544F610001F9EFE /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +148,7 @@
 				C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */,
 				C37E2E5A14B7DFAB00BB102C /* Security.framework */,
 				C37E2E4014B7D27900BB102C /* Whooves */,
+				C3E318881544F610001F9EFE /* WHCore */,
 				C37E2E3D14B7D27900BB102C /* Frameworks */,
 				C37E2E3B14B7D27900BB102C /* Products */,
 			);
@@ -95,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				C37E2E3A14B7D27900BB102C /* Whooves */,
+				C3E318811544F610001F9EFE /* WHCore.whplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				C37E2E3E14B7D27900BB102C /* Foundation.framework */,
+				C3E318821544F610001F9EFE /* Cocoa.framework */,
+				C3E318841544F610001F9EFE /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,12 +189,10 @@
 				C37E2E8114B8063100BB102C /* WHPlugin.m */,
 				C37E2E7B14B8035800BB102C /* WHPluginManager.h */,
 				C37E2E7C14B8035800BB102C /* WHPluginManager.m */,
+				C3E318BD1544F8E7001F9EFE /* WHReloadPlugins.h */,
+				C3E318BE1544F8E7001F9EFE /* WHReloadPlugins.m */,
 				C3B534DB14BA6FE900B02EE8 /* WHTag.h */,
 				C3B534DC14BA6FE900B02EE8 /* WHTag.m */,
-				C37E2E7E14B804DC00BB102C /* WHDateTime.h */,
-				C37E2E7F14B804DC00BB102C /* WHDateTime.m */,
-				C338941D14C7D95100B54442 /* WHWho.h */,
-				C338941E14C7D95100B54442 /* WHWho.m */,
 				C37E2E4514B7D27900BB102C /* Whooves.1 */,
 				C37E2E4314B7D27900BB102C /* Supporting Files */,
 			);
@@ -143,7 +207,63 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C3E318841544F610001F9EFE /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3E318851544F610001F9EFE /* AppKit.framework */,
+				C3E318861544F610001F9EFE /* CoreData.framework */,
+				C3E318871544F610001F9EFE /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C3E318881544F610001F9EFE /* WHCore */ = {
+			isa = PBXGroup;
+			children = (
+				C3E318A41544F636001F9EFE /* WHCore.h */,
+				C3E318A51544F636001F9EFE /* WHCore.m */,
+				C3E318A61544F636001F9EFE /* WHDateTime.h */,
+				C3E318A71544F636001F9EFE /* WHDateTime.m */,
+				C3E318A81544F636001F9EFE /* WHGreeting.h */,
+				C3E318A91544F636001F9EFE /* WHGreeting.m */,
+				C3E318AA1544F636001F9EFE /* WHOp.h */,
+				C3E318AB1544F636001F9EFE /* WHOp.m */,
+				C3E318AC1544F636001F9EFE /* WHSilence.h */,
+				C3E318AD1544F636001F9EFE /* WHSilence.m */,
+				C3E318AE1544F636001F9EFE /* WHWho.h */,
+				C3E318AF1544F636001F9EFE /* WHWho.m */,
+				C3E318891544F610001F9EFE /* Supporting Files */,
+			);
+			path = WHCore;
+			sourceTree = "<group>";
+		};
+		C3E318891544F610001F9EFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3E3188A1544F610001F9EFE /* WHCore-Info.plist */,
+				C3E3188B1544F610001F9EFE /* InfoPlist.strings */,
+				C3E3188E1544F610001F9EFE /* WHCore-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C3E318771544F3B7001F9EFE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E318781544F3BE001F9EFE /* WHPluginManager.h in Headers */,
+				C3E3187B1544F3C8001F9EFE /* IRCMessage.h in Headers */,
+				C3E318791544F3C2001F9EFE /* WHPlugin.h in Headers */,
+				C3E3187C1544F3CA001F9EFE /* IRCBot.h in Headers */,
+				C3E3187A1544F3C7001F9EFE /* WHTag.h in Headers */,
+				C3E318BF1544F8E7001F9EFE /* WHReloadPlugins.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		C37E2E3914B7D27900BB102C /* Whooves */ = {
@@ -153,6 +273,7 @@
 				C37E2E3614B7D27900BB102C /* Sources */,
 				C37E2E3714B7D27900BB102C /* Frameworks */,
 				C37E2E3814B7D27900BB102C /* CopyFiles */,
+				C3E318771544F3B7001F9EFE /* Headers */,
 			);
 			buildRules = (
 			);
@@ -162,6 +283,25 @@
 			productName = Whooves;
 			productReference = C37E2E3A14B7D27900BB102C /* Whooves */;
 			productType = "com.apple.product-type.tool";
+		};
+		C3E318801544F610001F9EFE /* WHCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3E3188F1544F610001F9EFE /* Build configuration list for PBXNativeTarget "WHCore" */;
+			buildPhases = (
+				C3E3187D1544F610001F9EFE /* Sources */,
+				C3E3187E1544F610001F9EFE /* Frameworks */,
+				C3E3187F1544F610001F9EFE /* Resources */,
+				C3E318BB1544F7FE001F9EFE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3E318B71544F642001F9EFE /* PBXTargetDependency */,
+			);
+			name = WHCore;
+			productName = WHCore;
+			productReference = C3E318811544F610001F9EFE /* WHCore.whplugin */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -185,9 +325,21 @@
 			projectRoot = "";
 			targets = (
 				C37E2E3914B7D27900BB102C /* Whooves */,
+				C3E318801544F610001F9EFE /* WHCore */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C3E3187F1544F610001F9EFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E3188D1544F610001F9EFE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C37E2E3614B7D27900BB102C /* Sources */ = {
@@ -200,14 +352,45 @@
 				C37E2E5814B7DE2600BB102C /* IRCBot.m in Sources */,
 				C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */,
 				C37E2E7D14B8035800BB102C /* WHPluginManager.m in Sources */,
-				C37E2E8014B804DC00BB102C /* WHDateTime.m in Sources */,
 				C37E2E8214B8063100BB102C /* WHPlugin.m in Sources */,
 				C3B534DD14BA6FEA00B02EE8 /* WHTag.m in Sources */,
-				C338941F14C7D95100B54442 /* WHWho.m in Sources */,
+				C3E318C01544F8E7001F9EFE /* WHReloadPlugins.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E3187D1544F610001F9EFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3E318B01544F636001F9EFE /* WHCore.m in Sources */,
+				C3E318B11544F636001F9EFE /* WHDateTime.m in Sources */,
+				C3E318B21544F636001F9EFE /* WHGreeting.m in Sources */,
+				C3E318B31544F636001F9EFE /* WHOp.m in Sources */,
+				C3E318B41544F636001F9EFE /* WHSilence.m in Sources */,
+				C3E318B51544F636001F9EFE /* WHWho.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C3E318B71544F642001F9EFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C37E2E3914B7D27900BB102C /* Whooves */;
+			targetProxy = C3E318B61544F642001F9EFE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C3E3188B1544F610001F9EFE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3E3188C1544F610001F9EFE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C37E2E4714B7D27900BB102C /* Debug */ = {
@@ -275,6 +458,40 @@
 			};
 			name = Release;
 		};
+		C3E318901544F610001F9EFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Whooves";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WHCore/WHCore-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				INFOPLIST_FILE = "WHCore/WHCore-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Whooves/Plugins";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = whplugin;
+			};
+			name = Debug;
+		};
+		C3E318911544F610001F9EFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Whooves";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WHCore/WHCore-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				INFOPLIST_FILE = "WHCore/WHCore-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/Whooves/Plugins";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = whplugin;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -295,6 +512,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C3E3188F1544F610001F9EFE /* Build configuration list for PBXNativeTarget "WHCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3E318901544F610001F9EFE /* Debug */,
+				C3E318911544F610001F9EFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

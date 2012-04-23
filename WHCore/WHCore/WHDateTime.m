@@ -11,37 +11,34 @@
 @implementation WHDateTime
 
 - (BOOL)handleMessage:(IRCMessage *)message {
-	NSArray *tags = message.tags;
+	WHPluginFirstTag;
 	
-	NSInteger index = 1;
-	
-	WHTag *tag = [tags objectAtIndex:index];
-	
-	if([tag tag] != NSLinguisticTagPronoun && [tag tag] != NSLinguisticTagVerb) {
+	// There's a weird case when a capital What turns it into a noun. Not sure why...
+	if(!([tag tag] == NSLinguisticTagPronoun || [tag tag] == NSLinguisticTagNoun) && [tag tag] != NSLinguisticTagVerb) {
 		return NO;
 	}
 	
 	NSString *target = message.nick;
 	NSString *type = nil;
 	
-	if([tag tag] == NSLinguisticTagPronoun && [[tag word] isEqualToString:@"what"]) {
-		for(; index < [tags count] && !type; index++) {
+	if([tag isEqualToString:@"what"]) {
+		for(index++; index < [tags count] && !type; index++) {
 			tag = [tags objectAtIndex:index];
 			
 			if([tag tag] == NSLinguisticTagNoun) {
 				type = [tag word];
 			}
 		}
-	} else if([tag tag] == NSLinguisticTagVerb && [[tag word] isEqualToString:@"tell"]) {
+	} else if([tag isEqualToString:@"tell"]) {
 		index++;
 		
 		if(index < [tags count]) {
 			tag = [tags objectAtIndex:index];
 			
 			if([tag tag] == NSLinguisticTagNoun || [tag tag] == NSLinguisticTagPronoun) {
-				if([[tag word] isEqualToString:@"me"]) {
+				if([tag isEqualToString:@"me"]) {
 					target = message.nick;
-				} else if([[tag word] isEqualToString:@"us"]) {
+				} else if([tag isEqualToString:@"us"]) {
 					target = message.channel;
 				} else {
 					target = tag.word;
@@ -60,25 +57,23 @@
 		}
 	}
 	
-	if([type length] == 0 || !([type isEqualToString:@"date"] || [type isEqualToString:@"time"])) {
+	if([type length] == 0 || !([type isEqualToString:@"date"] || [type isEqualToString:@"time"] || [type isEqualToString:@"day"])) {
 		return NO;
 	}
 	
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
 	NSDate *date = [NSDate date];
 	
-	index = [tags count] - 2;
-	
 	if(index < [tags count]) {
 		tag = [tags objectAtIndex:index];
 		
-		if([tag tag] == NSLinguisticTagPreposition && [[tag word] isEqualToString:@"in"]) {
+		if([tag tag] == NSLinguisticTagPreposition && [tag isEqualToString:@"in"]) {
 			index++;
 			
 			if(index < [tags count]) {
 				tag = [tags objectAtIndex:index];
 				
-				if([[tag word] length] == 3) {
+				if([[tag word] length] == 3 && index + 1 == [tags count]) {
 					// Possible time zone.
 					
 					timeZone = [NSTimeZone timeZoneWithAbbreviation:[tag word]];
@@ -86,6 +81,20 @@
 					if(!timeZone) {
 						timeZone = [NSTimeZone systemTimeZone];
 					}
+				} else {
+					// Could be a location. Try to handle that.
+					
+					NSMutableString *response = [NSMutableString stringWithString:@"I don't handle locations yet"];
+					
+					if([target hasPrefix:@"#"]) {
+						[response appendString:@"."];
+					} else {
+						[response appendFormat:@", %@.", target];
+					}
+					
+					[[IRCBot sharedBot] write:@"PRIVMSG %@ :%@", message.responseTarget, response];
+					
+					return YES;
 				}
 			}
 		}
@@ -100,6 +109,11 @@
 	} else if([type isEqualToString:@"date"]) {
 		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	} else if([type isEqualToString:@"day"]) {
+		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+		[dateFormatter setDateStyle:NSDateFormatterNoStyle];
+		
+		[dateFormatter setDateFormat:@"EEEE"];
 	}
 	
 	NSMutableString *response = [NSMutableString stringWithFormat:@"The %@ is %@", type, [dateFormatter stringFromDate:date]];
@@ -110,7 +124,7 @@
 		[response appendFormat:@", %@.", target];
 	}
 	
-	[[[IRCBot sharedBot] connection] write:@"PRIVMSG %@ :%@", message.target, response];
+	[[IRCBot sharedBot] write:@"PRIVMSG %@ :%@", message.responseTarget, response];
 	
 	return YES;
 }

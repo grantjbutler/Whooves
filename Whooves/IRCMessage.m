@@ -7,6 +7,7 @@
 //
 
 #import "IRCMessage.h"
+#import "IRCBot.h"
 
 @interface IRCMessage ()
 
@@ -15,6 +16,8 @@
 @property (strong, readwrite) NSArray *args;
 
 @property (strong, readwrite) NSString *message;
+
+@property (strong, readwrite) NSString *messageTarget;
 
 @property (strong, readwrite) NSString *nick;
 @property (strong, readwrite) NSString *channel;
@@ -32,6 +35,8 @@
 @synthesize args = _args;
 
 @synthesize message = _message;
+
+@synthesize messageTarget = _messageTarget;
 
 @synthesize nick = _nick;
 @synthesize channel = _channel;
@@ -81,7 +86,7 @@
 		if([argMatches count] == 0) {
 			for(NSTextCheckingResult *match in argMatches) {
 				for(int i = 0; i < [match numberOfRanges]; i++) {
-					NSLog(@"%@", [rawArgs substringWithRange:[match rangeAtIndex:i]]);
+					WHLog(@"%@", [rawArgs substringWithRange:[match rangeAtIndex:i]]);
 				}
 			}
 		} else {
@@ -106,11 +111,13 @@
 			}
 		}
 		
-		if(!self.isNumeric && [[self.args objectAtIndex:0] characterAtIndex:0] == '#') {
-			self.channel = [self.args objectAtIndex:0];
-		}
-		
 		if(!self.isNumeric) {
+			if([[self.args objectAtIndex:0] characterAtIndex:0] == '#') {
+				self.channel = [self.args objectAtIndex:0];
+			}
+			
+			self.messageTarget = [self.args objectAtIndex:0];
+			
 			self.message = [[[self.args subarrayWithRange:NSMakeRange(1, self.args.count - 1)] componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@":" withString:@""];
 		}
 	}
@@ -139,12 +146,34 @@
 	return _tags;
 }
 
-- (NSString *)target {
+- (NSString *)responseTarget {
 	if(self.channel) {
 		return self.channel;
 	}
 	
 	return self.nick;
+}
+
+- (BOOL)senderIsOp {
+	__block IRCMessage *this = self;
+	
+	return ([[[IRCBot sharedBot] ops] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+		if(![obj isKindOfClass:[NSString class]]) {
+			return NO;
+		}
+		
+		if([this.nick compare:(NSString *)obj options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+			*stop = YES;
+			
+			return YES;
+		}
+		
+		return NO;
+	}] != NSNotFound);
+}
+
+- (BOOL)senderIsOwner {
+	return ([self.nick compare:[[IRCBot sharedBot] owner] options:NSCaseInsensitiveSearch] == NSOrderedSame);
 }
 
 @end

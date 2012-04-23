@@ -12,9 +12,30 @@
 
 #import "IRCBot.h"
 
+// TODO: These really shouldn't be defines.
+
+#define WHPluginFirstTag NSArray *tags = message.tags; \
+NSInteger index = 0; \
+\
+WHTag *tag = [tags objectAtIndex:index]; \
+ \
+if([tag isEqualToString:[[IRCBot sharedBot] nick]]) { \
+	tag = [tags objectAtIndex:++index]; \
+}
+
+#define WHPluginNextTag { \
+	if(++index < [tags count]) { \
+		tag = [tags objectAtIndex:index]; \
+	} else { \
+		tag = nil; \
+	} \
+}
+
 @interface WHPlugin : NSObject
 
-- (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message;
+- (BOOL)shouldHandleMessage:(IRCMessage *)message;
+
+- (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message DEPRECATED_ATTRIBUTE;
 - (BOOL)handleMessage:(IRCMessage *)message;
 
 - (NSString *)helpDescription;

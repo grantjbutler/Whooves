@@ -23,7 +23,7 @@
 }
 
 - (BOOL)isEqualToString:(NSString *)string {
-	return [_word isEqualToString:string];
+	return ([_word compare:string options:NSCaseInsensitiveSearch] == NSOrderedSame);
 }
 
 - (NSString *)description {

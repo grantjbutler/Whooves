@@ -19,11 +19,16 @@
 @property (strong, readonly) NSString *nick;
 @property (strong, readonly) NSString *channel;
 
-@property (strong, readonly) NSString *target;
+@property (strong, readonly) NSString *messageTarget;
+@property (strong, readonly) NSString *responseTarget;
 
 @property (strong, readonly) NSString *message;
+@property (strong, readonly) NSArray *messageComponents;
 
 @property (strong, readonly) NSArray *tags;
+
+@property (assign, readonly) BOOL senderIsOp;
+@property (assign, readonly) BOOL senderIsOwner;
 
 @property (readonly, getter = isNumeric) BOOL numeric;
 

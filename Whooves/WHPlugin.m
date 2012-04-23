@@ -9,13 +9,19 @@
 #import "WHPlugin.h"
 #import "WHPluginManager.h"
 
-@implementation WHPlugin
+@implementation WHPlugin {
+	
+}
 
 //+ (void)initialize {
 //	if(self != [WHPlugin class]) {
 //		[[WHPluginManager sharedManager] registerClass:self];
 //	}
 //}
+
+- (BOOL)shouldHandleMessage:(IRCMessage *)message {
+	return YES;
+}
 
 - (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message {
 	return NO;

@@ -36,11 +36,15 @@
 	va_list list;
 	va_start(list, format);
 	
-	NSString *string = [[NSString alloc] initWithFormat:format arguments:list];
+	[self write:format args:list];
 	
 	va_end(list);
+}
+
+- (void)write:(NSString *)format args:(va_list)args {
+	NSString *string = [[NSString alloc] initWithFormat:format arguments:args];
 	
-	NSLog(@"> %@", string);
+	WHLog(@"> %@", string);
 	
 	NSMutableData *data = [[string dataUsingEncoding:NSASCIIStringEncoding] mutableCopy];
 	[data appendData:[GCDAsyncSocket CRLFData]];
@@ -71,7 +75,7 @@
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
 	NSString *line = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 	
-	NSLog(@"< %@", line);
+	WHLog(@"< %@", line);
 	
 	IRCMessage *message = [[IRCMessage alloc] initWithString:line];
 	
