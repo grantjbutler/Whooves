@@ -149,6 +149,12 @@
 				tag = [message.tags objectAtIndex:1];
 			}
 			
+			if([tag isEqualToString:self.nick] && [[message tags] count] == 1) {
+				[_connection write:@"PRIVMSG %@ :Need some help? Ask me who I am.", message.responseTarget];
+				
+				return;
+			}
+			
 			if(tag.tag == NSLinguisticTagPronoun) {
 				[_connection write:@"PRIVMSG %@ :%@", message.responseTarget, [[self class] randomUnknownQuestionResponse]];
 			} else if(tag.tag == NSLinguisticTagVerb) {
