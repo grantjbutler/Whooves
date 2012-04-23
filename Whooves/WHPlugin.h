@@ -20,7 +20,11 @@ NSInteger index = 0; \
 WHTag *tag = [tags objectAtIndex:index]; \
  \
 if([tag isEqualToString:[[IRCBot sharedBot] nick]]) { \
-	tag = [tags objectAtIndex:++index]; \
+	if(++index < [tags count]) { \
+		tag = [tags objectAtIndex:index]; \
+	} else { \
+		tag = nil; \
+	} \
 }
 
 #define WHPluginNextTag { \
