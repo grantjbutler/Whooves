@@ -14,6 +14,7 @@
 #import "WHGreeting.h"
 #import "WHOp.h"
 #import "WHSilence.h"
+#import "WHWho.h"
 
 @implementation WHCore
 
@@ -22,6 +23,7 @@
 	[[WHPluginManager sharedManager] registerClass:[WHGreeting class]];
 	[[WHPluginManager sharedManager] registerClass:[WHOp class]];
 	[[WHPluginManager sharedManager] registerClass:[WHSilence class]];
+	[[WHPluginManager sharedManager] registerClass:[WHWho class]];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import "WHWho.h"
 
+NSString *const kDescription = @"I'm The Doctor. In pony form. Specifically, I'm an IRC bot written in Objective-C running on OS X. I'm also open source. Check me out at http://github.com/grantjbutler/Whooves/.";
+
 @implementation WHWho
 
 - (BOOL)handleMessage:(IRCMessage *)message {
@@ -20,12 +22,14 @@
 			WHPluginNextTag;
 			
 			if([tag isEqualToString:@"you"]) {
-				// Alright, explain yourself.
+				[[IRCBot sharedBot] write:@"PRIVMSG %@ : %@", message.responseTarget, kDescription];
+				
+				return YES;
 			}
 		}
 	}
 	
-	return YES;
+	return NO;
 }
 
 @end
