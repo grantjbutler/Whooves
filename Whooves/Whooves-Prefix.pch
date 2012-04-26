@@ -5,7 +5,7 @@
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>
 
-#ifdef DEBUG
+#if defined(DEBUG) && !defined(WHLog)
 #define WHLog(...) NSLog(__VA_ARGS__)
 #else
 #define WHLog(...) do { } while(0);
