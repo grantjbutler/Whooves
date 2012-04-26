@@ -64,19 +64,38 @@
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
 	NSDate *date = [NSDate date];
 	
+	index += 2; // Skip past "is" and "it".
+	
 	if(index < [tags count]) {
 		tag = [tags objectAtIndex:index];
 		
-		if([tag tag] == NSLinguisticTagPreposition && [tag isEqualToString:@"in"]) {
+		if([tag isEqualToString:@"in"]) {
 			index++;
 			
 			if(index < [tags count]) {
 				tag = [tags objectAtIndex:index];
 				
-				if([[tag word] length] == 3 && index + 1 == [tags count]) {
+				if([[tag word] length] == 3 && (index + 1 == [tags count] || (index + 2 == [tags count] && [[(WHTag *)[tags objectAtIndex:index + 1] tag] isEqualToString:NSLinguisticTagNumber]))) {
 					// Possible time zone.
 					
 					timeZone = [NSTimeZone timeZoneWithAbbreviation:[tag word]];
+					
+					if(index + 1 == [tags count] - 1 && [[(WHTag *)[tags objectAtIndex:index + 1] tag] isEqualToString:NSLinguisticTagNumber]) {
+						
+						NSRange location = [[message message] rangeOfString:[tag word]];
+						
+						NSString *operation = [[message message] substringWithRange:NSMakeRange(location.location + location.length, 1)];
+						
+						WHPluginNextTag;
+						
+						NSInteger secondsFromGMT = [timeZone secondsFromGMT];
+						
+						if([operation isEqualToString:@"+"]) {
+							timeZone = [NSTimeZone timeZoneForSecondsFromGMT:-(secondsFromGMT - [[tag word] intValue] * 3600)];
+						} else if([operation isEqualToString:@"-"]) {
+							timeZone = [NSTimeZone timeZoneForSecondsFromGMT:-(secondsFromGMT + [[tag word] intValue] * 3600)];
+						}
+					}
 					
 					if(!timeZone) {
 						timeZone = [NSTimeZone systemTimeZone];
