@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#if !defined(WHLog)
+#if defined(DEBUG)
+#define WHLog(...) NSLog(__VA_ARGS__)
+#else
+#define WHLog(...) do { } while(0);
+#endif
+#endif
+
 @interface IRCBot : NSObject
 
 @property (strong) NSString *user;
