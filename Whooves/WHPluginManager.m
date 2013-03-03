@@ -108,7 +108,7 @@
 - (BOOL)havePluginsHandleMessage:(IRCMessage *)message {
 //	[p_pluginRegistry makeObjectsPerformSelector:@selector(reset)];
 	
-	WHLog(@"%@", [message tags]);
+//	WHLog(@"%@", [message tags]);
 	
 	for(WHPlugin *plugin in p_pluginRegistry) {
 		if(![plugin shouldHandleMessage:message]) {

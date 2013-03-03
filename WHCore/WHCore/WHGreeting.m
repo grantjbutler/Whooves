@@ -27,34 +27,25 @@
 	return responses;
 }
 
-+ (NSMutableArray *)greetings {
-	static NSMutableArray *greetings = nil;
++ (NSArray *)greetings {
+	static NSArray *greetings = nil;
 	
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		greetings = [[NSMutableArray alloc] init];
+		greetings = [NSArray arrayWithObjects:
+					 @"Hello",
+					 @"Hi",
+					 @"Hey",
+					 @"Hola",
+					 @"How's it going",
+					 @"Hows it going"
+					 @"Good day"
+					 @"Good afternoon"
+					 @"Good evening",
+					 @"Good night", nil];
 	});
 	
 	return greetings;
-}
-
-- (id)init {
-	if((self = [super init])) {
-		NSMutableArray *greetings = [[self class] greetings];
-		
-		[greetings addObject:@"Hello"];
-		[greetings addObject:@"Hi"];
-		[greetings addObject:@"Hey"];
-		[greetings addObject:@"Hola"];
-		[greetings addObject:@"How's it going"];
-		[greetings addObject:@"Hows it going"];
-		[greetings addObject:@"Good day"];
-		[greetings addObject:@"Good afternoon"];
-		[greetings addObject:@"Good evening"];
-		[greetings addObject:@"Good night"];
-	}
-	
-	return self;
 }
 
 - (BOOL)handleMessage:(IRCMessage *)message {

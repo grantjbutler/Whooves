@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C3E318801544F610001F9EFE"
-               BuildableName = "WHCore.bundle"
+               BuildableName = "WHCore.whplugin"
                BlueprintName = "WHCore"
                ReferencedContainer = "container:Whooves.xcodeproj">
             </BuildableReference>

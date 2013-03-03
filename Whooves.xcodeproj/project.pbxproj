@@ -144,9 +144,6 @@
 		C37E2E2F14B7D27900BB102C = {
 			isa = PBXGroup;
 			children = (
-				C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */,
-				C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */,
-				C37E2E5A14B7DFAB00BB102C /* Security.framework */,
 				C37E2E4014B7D27900BB102C /* Whooves */,
 				C3E318881544F610001F9EFE /* WHCore */,
 				C37E2E3D14B7D27900BB102C /* Frameworks */,
@@ -166,6 +163,9 @@
 		C37E2E3D14B7D27900BB102C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */,
+				C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */,
+				C37E2E5A14B7DFAB00BB102C /* Security.framework */,
 				C37E2E3E14B7D27900BB102C /* Foundation.framework */,
 				C3E318821544F610001F9EFE /* Cocoa.framework */,
 				C3E318841544F610001F9EFE /* Other Frameworks */,
@@ -520,6 +520,7 @@
 				C3E318911544F610001F9EFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -171,7 +171,7 @@
 #pragma mark - IRCConnection Delegate Methods
 
 - (void)connectionDidConnectToServer:(IRCConnection *)connection {
-	[connection write:@"USER %@ %@ %@ :%@, created by legosjedi.", self.nick, [[self class] userAgent], self.nick, [[self class] userAgent]];
+	[connection write:@"USER %@ %@ %@ :%@, created by %@.", self.nick, [[self class] userAgent], self.nick, [[self class] userAgent], self.owner];
 	[connection write:@"NICK %@", self.nick];
 	
 	if(self.pass) {

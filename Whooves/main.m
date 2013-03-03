@@ -27,11 +27,11 @@ int main (int argc, const char * argv[]) {
 		
 		[[WHPluginManager sharedManager] reloadPlugins];
 		
-#ifdef DEBUG
-		[bot join:@"#derpyhooves"];
-#else
-		[bot join:@"#reddit-mlp"];
-#endif
+//#ifdef DEBUG
+		[bot join:@"#bronycon-test"];
+//#else
+//		[bot join:@"#reddit-mlp"];
+//#endif
 		
 		[[NSRunLoop currentRunLoop] run];
 	}

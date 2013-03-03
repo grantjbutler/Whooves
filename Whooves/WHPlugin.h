@@ -14,9 +14,12 @@
 
 // TODO: These really shouldn't be defines.
 
-#define WHPluginFirstTag NSArray *tags = message.tags; \
+#define WHPluginFirstTag \
+ \
+NSArray *tags = message.tags; \
+ \
 NSInteger index = 0; \
-\
+ \
 WHTag *tag = [tags objectAtIndex:index]; \
  \
 if([tag isEqualToString:[[IRCBot sharedBot] nick]]) { \
@@ -27,7 +30,8 @@ if([tag isEqualToString:[[IRCBot sharedBot] nick]]) { \
 	} \
 }
 
-#define WHPluginNextTag { \
+#define WHPluginNextTag \
+{ \
 	if(++index < [tags count]) { \
 		tag = [tags objectAtIndex:index]; \
 	} else { \
