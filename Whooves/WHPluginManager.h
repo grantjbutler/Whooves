@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WHPlugin.h"
-
-#import "IRCMessage.h"
+@class IRCMessage;
 
 @interface WHPluginManager : NSObject
 
@@ -21,7 +19,9 @@
 - (void)registerClass:(Class)klass;
 
 - (BOOL)havePluginsHandleMessage:(IRCMessage *)message;
+- (void)havePluginsHandleRawMessage:(IRCMessage *)message;
 
+- (void)unloadPlugins;
 - (void)reloadPlugins;
 
 @end

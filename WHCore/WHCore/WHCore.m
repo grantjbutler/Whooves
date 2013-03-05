@@ -10,20 +10,14 @@
 
 #import "WHPluginManager.h"
 
-#import "WHDateTime.h"
-#import "WHGreeting.h"
-#import "WHOp.h"
-#import "WHSilence.h"
-#import "WHWho.h"
+#import "WHAbout.h"
+#import "WHKarma.h"
 
 @implementation WHCore
 
 + (void)loadPlugins {
-	[[WHPluginManager sharedManager] registerClass:[WHDateTime class]];
-	[[WHPluginManager sharedManager] registerClass:[WHGreeting class]];
-	[[WHPluginManager sharedManager] registerClass:[WHOp class]];
-	[[WHPluginManager sharedManager] registerClass:[WHSilence class]];
-	[[WHPluginManager sharedManager] registerClass:[WHWho class]];
+	[[WHPluginManager sharedManager] registerClass:[WHAbout class]];
+	[[WHPluginManager sharedManager] registerClass:[WHKarma class]];
 }
 
 @end

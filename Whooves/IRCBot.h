@@ -24,7 +24,9 @@
 
 @property (strong) NSString *owner;
 
-@property (strong, readwrite) NSMutableArray *ops;
+@property (strong) NSString *commandPrefix;
+
+@property (strong, nonatomic, readonly) NSArray *users;
 
 + (IRCBot *)sharedBot;
 
@@ -35,5 +37,7 @@
 - (void)loadSettingsFromFile:(NSString *)path;
 
 - (void)write:(NSString *)format, ...;
+
+- (void)shutdown;
 
 @end

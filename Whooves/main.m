@@ -12,9 +12,18 @@
 
 #import "WHPluginManager.h"
 
-int main (int argc, const char * argv[]) {
+static void shutdown(int sign) {
+	[[IRCBot sharedBot] shutdown];
+	
+	abort();
+}
+
+__attribute__((noreturn)) int main (int argc, const char * argv[])  {
 	@autoreleasepool {
 		// TODO: Possibly re-work this to use DDCLI for CLI arg parsing?
+		
+		signal(SIGINT, &shutdown);
+		signal(SIGQUIT, &shutdown);
 		
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 		NSString *appSupport = [[paths lastObject] stringByAppendingPathComponent:@"Whooves"];
@@ -28,14 +37,11 @@ int main (int argc, const char * argv[]) {
 		[[WHPluginManager sharedManager] reloadPlugins];
 		
 //#ifdef DEBUG
-		[bot join:@"#bronycon-test"];
+		[bot join:@"#bronycon-spoilers"];
 //#else
 //		[bot join:@"#reddit-mlp"];
 //#endif
 		
 		[[NSRunLoop currentRunLoop] run];
 	}
-	
-    return 0;
 }
-

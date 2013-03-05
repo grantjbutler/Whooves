@@ -8,6 +8,7 @@
 
 #import "IRCMessage.h"
 #import "IRCBot.h"
+#import "IRCUser.h"
 
 @interface IRCMessage ()
 
@@ -16,11 +17,14 @@
 @property (strong, readwrite) NSArray *args;
 
 @property (strong, readwrite) NSString *message;
+@property (strong, readwrite) NSArray *messageComponents;
 
 @property (strong, readwrite) NSString *messageTarget;
 
 @property (strong, readwrite) NSString *nick;
 @property (strong, readwrite) NSString *channel;
+
+@property (strong, readwrite) IRCUser *sender;
 
 @property (readwrite, getter = isNumeric) BOOL numeric;
 
@@ -42,8 +46,6 @@
 @synthesize channel = _channel;
 
 @synthesize numeric = _numeric;
-
-@synthesize tags = _tags;
 
 - (id)initWithString:(NSString *)string {
 	if((self = [super init])) {
@@ -109,6 +111,12 @@
 				
 				self.nick = (nickRange.location != NSNotFound) ? [self.prefix substringWithRange:nickRange] : nil;
 			}
+			
+			NSInteger index = [[[IRCBot sharedBot] users] indexOfObject:self.nick];
+			
+			if(index != NSNotFound) {
+				self.sender = [[IRCBot sharedBot] users][index];
+			}
 		}
 		
 		if(!self.isNumeric) {
@@ -118,32 +126,18 @@
 			
 			self.messageTarget = [self.args objectAtIndex:0];
 			
-			self.message = [[[self.args subarrayWithRange:NSMakeRange(1, self.args.count - 1)] componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@":" withString:@""];
+			self.messageComponents = @[];
+			self.message = @"";
+			
+			if(self.args.count > 1) {
+				NSMutableArray *commandArgs = [[self.args subarrayWithRange:NSMakeRange(1, self.args.count - 1)] mutableCopy];
+				[commandArgs replaceObjectAtIndex:0 withObject:[[commandArgs objectAtIndex:0] stringByReplacingOccurrencesOfString:@":" withString:@""]];
+				self.messageComponents = commandArgs;
+				
+				self.message = [[self.messageComponents componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@":" withString:@""];
+			}
 		}
 	}
-}
-
-- (NSArray *)tags {
-	if(self.isNumeric) {
-		return nil;
-	}
-	
-	@synchronized(self) {
-		if(!_tags) {
-			NSMutableArray *tempTags = [[NSMutableArray alloc] init];
-			
-			NSLinguisticTagger *lingusticTagger = [[NSLinguisticTagger alloc] initWithTagSchemes:[NSArray arrayWithObject:NSLinguisticTagSchemeLexicalClass] options:NSLinguisticTaggerJoinNames | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerOmitWhitespace];
-			[lingusticTagger setString:self.message];
-			[lingusticTagger enumerateTagsInRange:NSMakeRange(0, [self.message length]) scheme:NSLinguisticTagSchemeLexicalClass options:NSLinguisticTaggerJoinNames | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerOmitWhitespace usingBlock:^(NSString *tag, NSRange tokenRange, NSRange sentenceRange, BOOL *stop) {
-				WHTag *tagObj = [[WHTag alloc] initWithTag:tag word:[self.message substringWithRange:tokenRange]];
-				[tempTags addObject:tagObj];
-			}];
-			
-			_tags = tempTags;
-		}
-	}
-	
-	return _tags;
 }
 
 - (NSString *)responseTarget {
@@ -155,25 +149,15 @@
 }
 
 - (BOOL)senderIsOp {
-	__block IRCMessage *this = self;
-	
-	return ([[[IRCBot sharedBot] ops] indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-		if(![obj isKindOfClass:[NSString class]]) {
-			return NO;
-		}
-		
-		if([this.nick compare:(NSString *)obj options:NSCaseInsensitiveSearch] == NSOrderedSame) {
-			*stop = YES;
-			
-			return YES;
-		}
-		
-		return NO;
-	}] != NSNotFound);
+	return [self.sender isOpInChannel:self.channel];
 }
 
 - (BOOL)senderIsOwner {
 	return ([self.nick compare:[[IRCBot sharedBot] owner] options:NSCaseInsensitiveSearch] == NSOrderedSame);
+}
+
+- (void)respond:(NSString *)message {
+	[[IRCBot sharedBot] write:@"PRIVMSG %@ :%@", self.responseTarget, message];
 }
 
 @end

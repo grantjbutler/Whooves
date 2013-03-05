@@ -7,10 +7,9 @@
 //
 
 #import "IRCBot.h"
-
 #import "WHPluginManager.h"
-
 #import "IRCConnection.h"
+#import "IRCUser.h"
 
 @interface IRCBot () <IRCConnectionDelegate>
 
@@ -18,7 +17,9 @@
 
 @end
 
-@implementation IRCBot
+@implementation IRCBot {
+	NSMutableArray *_users;
+}
 
 @synthesize connection = _connection;
 
@@ -28,21 +29,18 @@
 
 @synthesize owner = _owner;
 
-@synthesize ops = _ops;
+@synthesize users = _users;
 
-+ (NSArray *)unknownQuestionResponses {
-	return [NSArray arrayWithObjects:
-			@"I do not know the answer to that.",
-			@"I haven't got a clue.",
-			@"I don't know. I'm a doctor, not an encyclopedia!",
-			@"The answer: it eludes me.",
-			nil];
-}
-
-+ (NSString *)randomUnknownQuestionResponse {
-	NSArray *unknownQuestionResponses = [[self class] unknownQuestionResponses];
++ (NSCharacterSet *)ircUsernameCharacterSet {
+	static NSMutableCharacterSet *ircUsernameCharacterSet = nil;
 	
-	return [unknownQuestionResponses objectAtIndex:arc4random() % [unknownQuestionResponses count]];
+	if(!ircUsernameCharacterSet) {
+		ircUsernameCharacterSet = [[NSMutableCharacterSet alloc] init];
+		[ircUsernameCharacterSet formUnionWithCharacterSet:[NSCharacterSet alphanumericCharacterSet]];
+		[ircUsernameCharacterSet addCharactersInString:@"-_[]{}\\|`<"];
+	}
+	
+	return ircUsernameCharacterSet;
 }
 
 + (NSArray *)unknownActionResponses {
@@ -84,7 +82,9 @@
 		_connection = [[IRCConnection alloc] init];
 		_connection.delegate = self;
 		
-		_ops = [[NSMutableArray alloc] init];
+		_users = [[NSMutableArray alloc] init];
+		
+		_commandPrefix = @"!";
 	}
 	
 	return self;
@@ -103,6 +103,10 @@
 	self.pass = [settings objectForKey:@"pass"];
 	
 	self.owner = [settings objectForKey:@"owner"];
+	
+	if([settings objectForKey:@"prefix"]) {
+		self.commandPrefix = [settings objectForKey:@"prefix"];
+	}
 	
 	[self connectToHost:[settings objectForKey:@"host"] port:[[settings objectForKey:@"port"] intValue]];
 }
@@ -128,6 +132,12 @@
 	va_end(list);
 }
 
+- (void)shutdown {
+	[[WHPluginManager sharedManager] unloadPlugins];
+	
+	[_connection close];
+}
+
 //- (void)handleObject:(id)obj forMessage:(IRCMessage *)message {
 //	if(![[WHPluginManager sharedManager] havePluginsHandleObject:obj forMessage:message]) {
 //		if([obj isKindOfClass:[WHAction class]]) {
@@ -141,31 +151,18 @@
 //}
 
 - (void)handleMessage:(IRCMessage *)message {
-	if(![[WHPluginManager sharedManager] havePluginsHandleMessage:message]) {
-		if([[message tags] count] > 0) {
-			WHTag *tag = [message.tags objectAtIndex:0];
-			
-			if([tag isEqualToString:self.nick] && [[message tags] count] > 1) {
-				tag = [message.tags objectAtIndex:1];
-			}
-			
-			if([tag isEqualToString:self.nick] && [[message tags] count] == 1) {
-				[_connection write:@"PRIVMSG %@ :Need some help? Ask me who I am.", message.responseTarget];
-				
-				return;
-			}
-			
-			if(tag.tag == NSLinguisticTagPronoun) {
-				[_connection write:@"PRIVMSG %@ :%@", message.responseTarget, [[self class] randomUnknownQuestionResponse]];
-			} else if(tag.tag == NSLinguisticTagVerb) {
-				[_connection write:@"PRIVMSG %@ :%@", message.responseTarget, [[self class] randomUnknownActionResponse]];
-			} else {
-				[_connection write:@"PRIVMSG %@ :Derp!", message.responseTarget];
-			}
-		} else {
-			[_connection write:@"PRIVMSG %@ :Derp!", message.responseTarget];
-		}
+	if(![message.message hasPrefix:self.commandPrefix]) {
+		return;
 	}
+	
+	if(![[WHPluginManager sharedManager] havePluginsHandleMessage:message]) {
+		[_connection write:@"PRIVMSG %@ :%@", message.responseTarget, [[self class] randomUnknownActionResponse]];
+//		[_connection write:@"PRIVMSG %@ :Derp!", message.responseTarget];
+	}
+}
+
+- (void)handleRawMessage:(IRCMessage *)message {
+	[[WHPluginManager sharedManager] havePluginsHandleRawMessage:message];
 }
 
 #pragma mark - IRCConnection Delegate Methods
@@ -181,10 +178,164 @@
 
 - (void)connection:(IRCConnection *)connection didReceiveMessage:(IRCMessage *)message {
 	if([message.command isEqualToString:@"PRIVMSG"]) {
-		if([[message tags] count] > 0) {
-			if((message.channel && [[[message tags] objectAtIndex:0] isEqualToString:self.nick]) || (!message.channel && message.responseTarget)) {
-				[self handleMessage:message];
+		if([message.message hasPrefix:self.commandPrefix]) {
+			[self handleMessage:message];
+		} else {
+			[self handleRawMessage:message];
+		}
+	} else if([message.command isEqualToString:@"353"]) {
+		NSString *channel = message.args[2];
+		
+		for(NSInteger i = 3; i < [message.args count]; i++) {
+			NSString *username = [message.args[i] stringByTrimmingCharactersInSet:[[[self class] ircUsernameCharacterSet] invertedSet]];
+			
+			IRCUserRole role = IRCUserRoleNormal;
+			
+			if([[username substringToIndex:1] rangeOfCharacterFromSet:[[self class] ircUsernameCharacterSet]].location == NSNotFound) {
+				NSString *prefix = [username substringToIndex:1];
+				username = [username substringFromIndex:1];
+				
+				role = [IRCUser userRoleFromPrefix:prefix];
 			}
+			
+			IRCUser *user = nil;
+			
+			NSInteger index = [_users indexOfObject:username];
+			
+			if(index != NSNotFound) {
+				user = _users[index];
+			}
+			
+			if(!user) {
+				user = [[IRCUser alloc] init];
+				user.username = username;
+				[_users addObject:user];
+			}
+			
+			if([user.channels containsObject:channel]) {
+				[user changeRoleInChannel:channel toRole:role];
+			} else {
+				[user joinChannel:channel role:role];
+			}
+		}
+	} else if([message.command isEqualToString:@"352"]) {
+		NSString *channel = message.args[0];
+		NSString *username = message.args[4];
+		NSString *status = message.args[5];
+		IRCUserRole role = IRCUserRoleNormal;
+		
+		if([[status substringFromIndex:[status length] - 1] rangeOfCharacterFromSet:[NSCharacterSet alphanumericCharacterSet]].location == NSNotFound) {
+			role = [IRCUser userRoleFromPrefix:[status substringFromIndex:[status length] - 1]];
+		}
+		
+		IRCUser *user = nil;
+		
+		NSInteger index = [_users indexOfObject:username];
+		
+		if(index != NSNotFound) {
+			user = _users[index];
+		}
+		
+		if(!user) {
+			user = [[IRCUser alloc] init];
+			user.username = username;
+			[_users addObject:user];
+		}
+		
+		if([user.channels containsObject:channel]) {
+			[user changeRoleInChannel:channel toRole:role];
+		} else {
+			[user joinChannel:channel role:role];
+		}
+	} else if([message.command isEqualToString:@"MODE"]) {
+		if([message.args count] < 3) {
+			return;
+		}
+		
+		NSString *channel = message.args[0];
+		NSString *mode = message.args[1];
+		NSString *username = message.args[2];
+		
+		NSString *action = [mode substringToIndex:1];
+		mode = [mode substringFromIndex:1];
+		
+		IRCUserRole role = [IRCUser userRoleFromMode:mode];
+		
+		IRCUser *user = nil;
+		
+		NSInteger index = [_users indexOfObject:username];
+		
+		if(index != NSNotFound) {
+			user = _users[index];
+		}
+		
+		if(!user) {
+			return;
+		}
+		
+		if(![user.channels containsObject:channel]) {
+			return;
+		}
+		
+		if([action isEqualToString:@"+"]) {
+			[user changeRoleInChannel:channel toRole:role];
+		} else if([action isEqualToString:@"-"]) {
+			[user changeRoleInChannel:channel toRole:IRCUserRoleNormal];
+		}
+	} else if([message.command isEqualToString:@"NICK"]) {
+		NSString *oldUsername = message.nick;
+		NSString *newUsername = message.args[0];
+		
+		IRCUser *user = nil;
+		
+		NSInteger index = [_users indexOfObject:oldUsername];
+		
+		if(index != NSNotFound) {
+			user = _users[index];
+		}
+		
+		if(!user) {
+			return;
+		}
+		
+		user.username = newUsername;
+	} else if([message.command isEqualToString:@"JOIN"]) {
+		IRCUser *user = nil;
+		
+		NSInteger index = [_users indexOfObject:message.nick];
+		
+		if(index != NSNotFound) {
+			user = _users[index];
+		}
+		
+		if(!user) {
+			user = [[IRCUser alloc] init];
+			user.username = message.nick;
+			[_users addObject:user];
+		}
+		
+		NSString *channel = [message.args[0] stringByReplacingOccurrencesOfString:@":" withString:@""];
+		
+		[user joinChannel:channel role:IRCUserRoleNormal];
+	} else if([message.command isEqualToString:@"PART"]) {
+		NSString *channel = message.args[0];
+		
+		IRCUser *user = nil;
+		
+		NSInteger index = [_users indexOfObject:message.nick];
+		
+		if(index != NSNotFound) {
+			user = _users[index];
+		}
+		
+		if(!user) {
+			return;
+		}
+		
+		[user partChannel:channel];
+	} else if([message.command isEqualToString:@"QUIT"]) {
+		if([_users containsObject:message.nick]) {
+			[_users removeObject:message.nick];
 		}
 	}
 }

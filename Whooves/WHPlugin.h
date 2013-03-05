@@ -7,45 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "IRCMessage.h"
-
 #import "IRCBot.h"
 
-// TODO: These really shouldn't be defines.
+#import "WHLocalStorage.h"
 
-#define WHPluginFirstTag \
- \
-NSArray *tags = message.tags; \
- \
-NSInteger index = 0; \
- \
-WHTag *tag = [tags objectAtIndex:index]; \
- \
-if([tag isEqualToString:[[IRCBot sharedBot] nick]]) { \
-	if(++index < [tags count]) { \
-		tag = [tags objectAtIndex:index]; \
-	} else { \
-		tag = nil; \
-	} \
-}
+@protocol WHPlugin <NSObject>
 
-#define WHPluginNextTag \
-{ \
-	if(++index < [tags count]) { \
-		tag = [tags objectAtIndex:index]; \
-	} else { \
-		tag = nil; \
-	} \
-}
+// Although optional, you must implement at least one of these.
+@optional
+- (BOOL)handleMessage:(IRCMessage *)message;
+- (BOOL)handleRawMessage:(IRCMessage *)message;
 
-@interface WHPlugin : NSObject
+// If you're implementing handleMessage:, implement one of the following:
+@property (nonatomic, strong, readonly) NSArray *commands; // Override this if you provide multiple commands.
+@property (nonatomic, strong, readonly) NSString *command; // Override this if you provide just one command.
+														   // If you need to provide custom regex, override this.
+
+@end
+
+@interface WHPlugin : NSObject <WHPlugin>
+
+@property (nonatomic, strong, readonly) WHLocalStorage *localStorage;
 
 - (BOOL)shouldHandleMessage:(IRCMessage *)message;
-
-- (BOOL)handleObject:(id)obj forMessage:(IRCMessage *)message DEPRECATED_ATTRIBUTE;
-- (BOOL)handleMessage:(IRCMessage *)message;
-
 - (NSString *)helpDescription;
+
+- (void)unload;
 
 @end

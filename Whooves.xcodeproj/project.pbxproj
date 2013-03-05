@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C320BA9216E5A5550056D8C9 /* WHKarma.m in Sources */ = {isa = PBXBuildFile; fileRef = C320BA9116E5A5550056D8C9 /* WHKarma.m */; };
+		C320BA9516E5A8EA0056D8C9 /* WHLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = C320BA9316E5A8E90056D8C9 /* WHLocalStorage.h */; };
+		C320BA9616E5A8EA0056D8C9 /* WHLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C320BA9416E5A8EA0056D8C9 /* WHLocalStorage.m */; };
+		C320BA9916E5AB050056D8C9 /* WHKarmaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C320BA9816E5AB050056D8C9 /* WHKarmaInfo.m */; };
+		C340498D16E504F80086BD5F /* WHAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = C340498C16E504F80086BD5F /* WHAbout.m */; };
+		C340499016E5061F0086BD5F /* WHHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = C340498E16E5061F0086BD5F /* WHHelp.h */; };
+		C340499116E5061F0086BD5F /* WHHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = C340498F16E5061F0086BD5F /* WHHelp.m */; };
 		C37E2E3F14B7D27900BB102C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E3E14B7D27900BB102C /* Foundation.framework */; };
 		C37E2E4214B7D27900BB102C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E4114B7D27900BB102C /* main.m */; };
 		C37E2E4614B7D27900BB102C /* Whooves.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C37E2E4514B7D27900BB102C /* Whooves.1 */; };
@@ -16,23 +23,19 @@
 		C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E6114B7E75900BB102C /* IRCMessage.m */; };
 		C37E2E7D14B8035800BB102C /* WHPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E7C14B8035800BB102C /* WHPluginManager.m */; };
 		C37E2E8214B8063100BB102C /* WHPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C37E2E8114B8063100BB102C /* WHPlugin.m */; };
-		C3B534DD14BA6FEA00B02EE8 /* WHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B534DC14BA6FE900B02EE8 /* WHTag.m */; };
+		C39D48C716E42D4C00C120EB /* WHPlugin+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = C39D48C616E42D4B00C120EB /* WHPlugin+Private.h */; };
+		C39D48CA16E4308300C120EB /* IRCUser.h in Headers */ = {isa = PBXBuildFile; fileRef = C39D48C816E4308300C120EB /* IRCUser.h */; };
+		C39D48CB16E4308300C120EB /* IRCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C39D48C916E4308300C120EB /* IRCUser.m */; };
 		C3E3184D1544F022001F9EFE /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5E14B7DFEA00BB102C /* CoreServices.framework */; };
 		C3E3184E1544F024001F9EFE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5C14B7DFB700BB102C /* CoreFoundation.framework */; };
 		C3E318711544F0D6001F9EFE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37E2E5A14B7DFAB00BB102C /* Security.framework */; };
 		C3E318781544F3BE001F9EFE /* WHPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E7B14B8035800BB102C /* WHPluginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3E318791544F3C2001F9EFE /* WHPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E7814B8027E00BB102C /* WHPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3E3187A1544F3C7001F9EFE /* WHTag.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B534DB14BA6FE900B02EE8 /* WHTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3E3187B1544F3C8001F9EFE /* IRCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E6014B7E75900BB102C /* IRCMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3E3187C1544F3CA001F9EFE /* IRCBot.h in Headers */ = {isa = PBXBuildFile; fileRef = C37E2E5614B7DE2600BB102C /* IRCBot.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3E318831544F610001F9EFE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E318821544F610001F9EFE /* Cocoa.framework */; };
 		C3E3188D1544F610001F9EFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3E3188B1544F610001F9EFE /* InfoPlist.strings */; };
 		C3E318B01544F636001F9EFE /* WHCore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318A51544F636001F9EFE /* WHCore.m */; };
-		C3E318B11544F636001F9EFE /* WHDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318A71544F636001F9EFE /* WHDateTime.m */; };
-		C3E318B21544F636001F9EFE /* WHGreeting.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318A91544F636001F9EFE /* WHGreeting.m */; };
-		C3E318B31544F636001F9EFE /* WHOp.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318AB1544F636001F9EFE /* WHOp.m */; };
-		C3E318B41544F636001F9EFE /* WHSilence.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318AD1544F636001F9EFE /* WHSilence.m */; };
-		C3E318B51544F636001F9EFE /* WHWho.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318AF1544F636001F9EFE /* WHWho.m */; };
 		C3E318BC1544F801001F9EFE /* WHCore.whplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3E318811544F610001F9EFE /* WHCore.whplugin */; };
 		C3E318BF1544F8E7001F9EFE /* WHReloadPlugins.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E318BD1544F8E7001F9EFE /* WHReloadPlugins.h */; };
 		C3E318C01544F8E7001F9EFE /* WHReloadPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E318BE1544F8E7001F9EFE /* WHReloadPlugins.m */; };
@@ -72,6 +75,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C320BA9016E5A5550056D8C9 /* WHKarma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHKarma.h; sourceTree = "<group>"; };
+		C320BA9116E5A5550056D8C9 /* WHKarma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHKarma.m; sourceTree = "<group>"; };
+		C320BA9316E5A8E90056D8C9 /* WHLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLocalStorage.h; sourceTree = "<group>"; };
+		C320BA9416E5A8EA0056D8C9 /* WHLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLocalStorage.m; sourceTree = "<group>"; };
+		C320BA9716E5AB050056D8C9 /* WHKarmaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHKarmaInfo.h; sourceTree = "<group>"; };
+		C320BA9816E5AB050056D8C9 /* WHKarmaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHKarmaInfo.m; sourceTree = "<group>"; };
+		C340498B16E504F80086BD5F /* WHAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHAbout.h; sourceTree = "<group>"; };
+		C340498C16E504F80086BD5F /* WHAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHAbout.m; sourceTree = "<group>"; };
+		C340498E16E5061F0086BD5F /* WHHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHHelp.h; sourceTree = "<group>"; };
+		C340498F16E5061F0086BD5F /* WHHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHHelp.m; sourceTree = "<group>"; };
 		C37E2E3A14B7D27900BB102C /* Whooves */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Whooves; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37E2E3E14B7D27900BB102C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C37E2E4114B7D27900BB102C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,8 +105,9 @@
 		C37E2E7B14B8035800BB102C /* WHPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPluginManager.h; sourceTree = "<group>"; };
 		C37E2E7C14B8035800BB102C /* WHPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPluginManager.m; sourceTree = "<group>"; };
 		C37E2E8114B8063100BB102C /* WHPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlugin.m; sourceTree = "<group>"; };
-		C3B534DB14BA6FE900B02EE8 /* WHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHTag.h; sourceTree = "<group>"; };
-		C3B534DC14BA6FE900B02EE8 /* WHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHTag.m; sourceTree = "<group>"; };
+		C39D48C616E42D4B00C120EB /* WHPlugin+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WHPlugin+Private.h"; sourceTree = "<group>"; };
+		C39D48C816E4308300C120EB /* IRCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCUser.h; sourceTree = "<group>"; };
+		C39D48C916E4308300C120EB /* IRCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCUser.m; sourceTree = "<group>"; };
 		C3E318811544F610001F9EFE /* WHCore.whplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WHCore.whplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E318821544F610001F9EFE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C3E318851544F610001F9EFE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -104,16 +118,6 @@
 		C3E3188E1544F610001F9EFE /* WHCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WHCore-Prefix.pch"; sourceTree = "<group>"; };
 		C3E318A41544F636001F9EFE /* WHCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHCore.h; path = WHCore/WHCore.h; sourceTree = "<group>"; };
 		C3E318A51544F636001F9EFE /* WHCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHCore.m; path = WHCore/WHCore.m; sourceTree = "<group>"; };
-		C3E318A61544F636001F9EFE /* WHDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHDateTime.h; path = WHCore/WHDateTime.h; sourceTree = "<group>"; };
-		C3E318A71544F636001F9EFE /* WHDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHDateTime.m; path = WHCore/WHDateTime.m; sourceTree = "<group>"; };
-		C3E318A81544F636001F9EFE /* WHGreeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHGreeting.h; path = WHCore/WHGreeting.h; sourceTree = "<group>"; };
-		C3E318A91544F636001F9EFE /* WHGreeting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHGreeting.m; path = WHCore/WHGreeting.m; sourceTree = "<group>"; };
-		C3E318AA1544F636001F9EFE /* WHOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHOp.h; path = WHCore/WHOp.h; sourceTree = "<group>"; };
-		C3E318AB1544F636001F9EFE /* WHOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHOp.m; path = WHCore/WHOp.m; sourceTree = "<group>"; };
-		C3E318AC1544F636001F9EFE /* WHSilence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHSilence.h; path = WHCore/WHSilence.h; sourceTree = "<group>"; };
-		C3E318AD1544F636001F9EFE /* WHSilence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHSilence.m; path = WHCore/WHSilence.m; sourceTree = "<group>"; };
-		C3E318AE1544F636001F9EFE /* WHWho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHWho.h; path = WHCore/WHWho.h; sourceTree = "<group>"; };
-		C3E318AF1544F636001F9EFE /* WHWho.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHWho.m; path = WHCore/WHWho.m; sourceTree = "<group>"; };
 		C3E318BD1544F8E7001F9EFE /* WHReloadPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHReloadPlugins.h; sourceTree = "<group>"; };
 		C3E318BE1544F8E7001F9EFE /* WHReloadPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHReloadPlugins.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,15 +188,20 @@
 				C37E2E5014B7D3A900BB102C /* IRCConnection.m */,
 				C37E2E6014B7E75900BB102C /* IRCMessage.h */,
 				C37E2E6114B7E75900BB102C /* IRCMessage.m */,
+				C39D48C816E4308300C120EB /* IRCUser.h */,
+				C39D48C916E4308300C120EB /* IRCUser.m */,
 				C37E2E4114B7D27900BB102C /* main.m */,
+				C320BA9316E5A8E90056D8C9 /* WHLocalStorage.h */,
+				C320BA9416E5A8EA0056D8C9 /* WHLocalStorage.m */,
 				C37E2E7814B8027E00BB102C /* WHPlugin.h */,
 				C37E2E8114B8063100BB102C /* WHPlugin.m */,
+				C39D48C616E42D4B00C120EB /* WHPlugin+Private.h */,
 				C37E2E7B14B8035800BB102C /* WHPluginManager.h */,
 				C37E2E7C14B8035800BB102C /* WHPluginManager.m */,
 				C3E318BD1544F8E7001F9EFE /* WHReloadPlugins.h */,
 				C3E318BE1544F8E7001F9EFE /* WHReloadPlugins.m */,
-				C3B534DB14BA6FE900B02EE8 /* WHTag.h */,
-				C3B534DC14BA6FE900B02EE8 /* WHTag.m */,
+				C340498E16E5061F0086BD5F /* WHHelp.h */,
+				C340498F16E5061F0086BD5F /* WHHelp.m */,
 				C37E2E4514B7D27900BB102C /* Whooves.1 */,
 				C37E2E4314B7D27900BB102C /* Supporting Files */,
 			);
@@ -222,16 +231,12 @@
 			children = (
 				C3E318A41544F636001F9EFE /* WHCore.h */,
 				C3E318A51544F636001F9EFE /* WHCore.m */,
-				C3E318A61544F636001F9EFE /* WHDateTime.h */,
-				C3E318A71544F636001F9EFE /* WHDateTime.m */,
-				C3E318A81544F636001F9EFE /* WHGreeting.h */,
-				C3E318A91544F636001F9EFE /* WHGreeting.m */,
-				C3E318AA1544F636001F9EFE /* WHOp.h */,
-				C3E318AB1544F636001F9EFE /* WHOp.m */,
-				C3E318AC1544F636001F9EFE /* WHSilence.h */,
-				C3E318AD1544F636001F9EFE /* WHSilence.m */,
-				C3E318AE1544F636001F9EFE /* WHWho.h */,
-				C3E318AF1544F636001F9EFE /* WHWho.m */,
+				C340498B16E504F80086BD5F /* WHAbout.h */,
+				C340498C16E504F80086BD5F /* WHAbout.m */,
+				C320BA9016E5A5550056D8C9 /* WHKarma.h */,
+				C320BA9116E5A5550056D8C9 /* WHKarma.m */,
+				C320BA9716E5AB050056D8C9 /* WHKarmaInfo.h */,
+				C320BA9816E5AB050056D8C9 /* WHKarmaInfo.m */,
 				C3E318891544F610001F9EFE /* Supporting Files */,
 			);
 			path = WHCore;
@@ -258,8 +263,11 @@
 				C3E3187B1544F3C8001F9EFE /* IRCMessage.h in Headers */,
 				C3E318791544F3C2001F9EFE /* WHPlugin.h in Headers */,
 				C3E3187C1544F3CA001F9EFE /* IRCBot.h in Headers */,
-				C3E3187A1544F3C7001F9EFE /* WHTag.h in Headers */,
 				C3E318BF1544F8E7001F9EFE /* WHReloadPlugins.h in Headers */,
+				C39D48C716E42D4C00C120EB /* WHPlugin+Private.h in Headers */,
+				C39D48CA16E4308300C120EB /* IRCUser.h in Headers */,
+				C340499016E5061F0086BD5F /* WHHelp.h in Headers */,
+				C320BA9516E5A8EA0056D8C9 /* WHLocalStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,8 +361,10 @@
 				C37E2E6214B7E75900BB102C /* IRCMessage.m in Sources */,
 				C37E2E7D14B8035800BB102C /* WHPluginManager.m in Sources */,
 				C37E2E8214B8063100BB102C /* WHPlugin.m in Sources */,
-				C3B534DD14BA6FEA00B02EE8 /* WHTag.m in Sources */,
 				C3E318C01544F8E7001F9EFE /* WHReloadPlugins.m in Sources */,
+				C39D48CB16E4308300C120EB /* IRCUser.m in Sources */,
+				C340499116E5061F0086BD5F /* WHHelp.m in Sources */,
+				C320BA9616E5A8EA0056D8C9 /* WHLocalStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,11 +373,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3E318B01544F636001F9EFE /* WHCore.m in Sources */,
-				C3E318B11544F636001F9EFE /* WHDateTime.m in Sources */,
-				C3E318B21544F636001F9EFE /* WHGreeting.m in Sources */,
-				C3E318B31544F636001F9EFE /* WHOp.m in Sources */,
-				C3E318B41544F636001F9EFE /* WHSilence.m in Sources */,
-				C3E318B51544F636001F9EFE /* WHWho.m in Sources */,
+				C340498D16E504F80086BD5F /* WHAbout.m in Sources */,
+				C320BA9216E5A5550056D8C9 /* WHKarma.m in Sources */,
+				C320BA9916E5AB050056D8C9 /* WHKarmaInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

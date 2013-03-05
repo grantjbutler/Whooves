@@ -11,30 +11,20 @@
 
 @implementation WHReloadPlugins
 
+- (NSString *)command {
+	return @"reload";
+}
+
 - (BOOL)handleMessage:(IRCMessage *)message {
 	if(![message senderIsOwner]) {
 		return NO;
 	}
 	
-	WHPluginFirstTag;
-	
-	if([tag isEqualToString:@"reload"]) {
-		WHPluginNextTag;
-		
-		if([tag isEqualToString:@"your"]) {
-			WHPluginNextTag;
-		}
-		
-		if([tag isEqualToString:@"plugins"]) {
-			[[WHPluginManager sharedManager] reloadPlugins];
-			
-			[[IRCBot sharedBot] write:@"PRIVMSG %@ :All plugins have been reloaded.", message.responseTarget];
-			
-			return YES;
-		}
-	}
-	
-	return NO;
+	[[WHPluginManager sharedManager] reloadPlugins];
+
+	[message respond:@"All plugins have been reloaded"];
+
+	return YES;
 }
 
 @end

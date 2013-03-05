@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WHTag.h"
+@class IRCUser;
 
 @interface IRCMessage : NSObject
 
@@ -25,13 +25,15 @@
 @property (strong, readonly) NSString *message;
 @property (strong, readonly) NSArray *messageComponents;
 
-@property (strong, readonly) NSArray *tags;
-
 @property (assign, readonly) BOOL senderIsOp;
 @property (assign, readonly) BOOL senderIsOwner;
+
+@property (strong, readonly) IRCUser *sender;
 
 @property (readonly, getter = isNumeric) BOOL numeric;
 
 - (id)initWithString:(NSString *)string;
+
+- (void)respond:(NSString *)message;
 
 @end

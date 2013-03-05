@@ -7,8 +7,10 @@
 //
 
 #import "WHPluginManager.h"
-
 #import "WHReloadPlugins.h"
+#import "IRCMessage.h"
+#import "WHPlugin+Private.h"
+#import "WHHelp.h"
 
 @implementation WHPluginManager {
 	NSMutableSet *p_pluginRegistry;
@@ -31,8 +33,6 @@
 	if((self = [super init])) {
 		p_pluginRegistry = [[NSMutableSet alloc] init];
 		p_loadedBundles = [[NSMutableSet alloc] init];
-		
-		[self registerClass:[WHReloadPlugins class]];
 	}
 	
 	return self;
@@ -42,12 +42,24 @@
 	return p_pluginRegistry;
 }
 
-- (void)reloadPlugins {
+- (void)unloadPlugins {
+	for(WHPlugin *plugin in self.plugins) {
+		if([plugin respondsToSelector:@selector(unload)]) {
+			[plugin unload];
+		}
+	}
+	
+	[p_pluginRegistry removeAllObjects];
+	
 	for(NSBundle *bundle in p_loadedBundles) {
 		[bundle unload];
 		
 		[p_loadedBundles removeObject:bundle];
 	}
+}
+
+- (void)reloadPlugins {
+	[self unloadPlugins];
 	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	NSString *appSupport = [[paths lastObject] stringByAppendingPathComponent:@"Whooves"];
@@ -91,6 +103,13 @@
 		
 		[p_loadedBundles addObject:bundle];
 	}
+	
+	[self loadBuiltInPlugins];
+}
+
+- (void)loadBuiltInPlugins {
+	[self registerClass:[WHReloadPlugins class]];
+	[self registerClass:[WHHelp class]];
 }
 
 - (void)registerClass:(Class)klass {
@@ -106,9 +125,9 @@
 }
 
 - (BOOL)havePluginsHandleMessage:(IRCMessage *)message {
-//	[p_pluginRegistry makeObjectsPerformSelector:@selector(reset)];
-	
-//	WHLog(@"%@", [message tags]);
+	if(![message.message hasPrefix:[[IRCBot sharedBot] commandPrefix]]) {
+		return NO;
+	}
 	
 	for(WHPlugin *plugin in p_pluginRegistry) {
 		if(![plugin shouldHandleMessage:message]) {
@@ -116,13 +135,37 @@
 		}
 	}
 	
+	NSString *command = [message.messageComponents[0] substringFromIndex:[[[IRCBot sharedBot] commandPrefix] length]];
+	
 	for(WHPlugin *plugin in p_pluginRegistry) {
-		if([plugin handleMessage:message]) {
-			return YES;
+		if([plugin.commandRegex numberOfMatchesInString:command options:0 range:NSMakeRange(0, [command length])] <= 0) {
+			continue;
+		}
+		
+		if([plugin respondsToSelector:@selector(handleMessage:)]) {
+			if([plugin handleMessage:message]) {
+				return YES;
+			}
 		}
 	}
 	
 	return NO;
+}
+
+- (void)havePluginsHandleRawMessage:(IRCMessage *)message {
+	for(WHPlugin *plugin in p_pluginRegistry) {
+		if(![plugin shouldHandleMessage:message]) {
+			return; // We didn't do anything, but we need to swallow the message.
+		}
+	}
+	
+	for(WHPlugin *plugin in p_pluginRegistry) {
+		if([plugin respondsToSelector:@selector(handleRawMessage:)]) {
+			if([plugin handleRawMessage:message]) {
+				return;
+			}
+		}
+	}
 }
 
 @end

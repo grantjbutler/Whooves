@@ -56,6 +56,10 @@
 	}
 }
 
+- (void)close {
+	[_socket disconnectAfterWriting];
+}
+
 #pragma mark - GCDAsyncSocket Delegate Methods
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
