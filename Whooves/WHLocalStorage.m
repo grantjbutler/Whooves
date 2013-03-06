@@ -15,11 +15,20 @@
 
 - (id)initWithPath:(NSString *)path {
 	if((self = [super init])) {
+		NSLog(@"Created local storage at path: %@", path);
+		
 		_path = path;
 		
 		if([[NSFileManager defaultManager] fileExistsAtPath:_path]) {
-			_storage = [NSMutableDictionary dictionaryWithContentsOfFile:_path];
-		} else {
+			@try {
+				_storage = [NSKeyedUnarchiver unarchiveObjectWithFile:_path];
+			}
+			@catch (NSException *exception) {
+				_storage = nil;
+			}
+		}
+		
+		if(!_storage) {
 			_storage = [NSMutableDictionary dictionary];
 		}
 	}
@@ -28,7 +37,7 @@
 }
 
 - (void)synchronize {
-	[_storage writeToFile:_path atomically:YES];
+	[NSKeyedArchiver archiveRootObject:_storage toFile:_path];
 }
 
 - (void)setObject:(id)object forKey:(id<NSCopying>)aKey {
