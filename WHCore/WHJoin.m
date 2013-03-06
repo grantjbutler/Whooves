@@ -10,4 +10,26 @@
 
 @implementation WHJoin
 
+- (NSString *)command {
+	return @"join";
+}
+
+- (BOOL)handleMessage:(IRCMessage *)message {
+	if(![message senderIsOwner]) {
+		return YES;
+	}
+	
+	if([message.messageComponents count] < 2) {
+		return YES;
+	}
+	
+	NSString *channel = message.messageComponents[1];
+	
+	[message respond:[NSString stringWithFormat:@"Alright, I'll head right over to %@.", channel]];
+	
+	[[IRCBot sharedBot] join:channel];
+	
+	return YES;
+}
+
 @end

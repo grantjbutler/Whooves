@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C304433616E6DD9B005DA8F3 /* WHJoin.m in Sources */ = {isa = PBXBuildFile; fileRef = C304433516E6DD9B005DA8F3 /* WHJoin.m */; };
 		C320BA9216E5A5550056D8C9 /* WHKarma.m in Sources */ = {isa = PBXBuildFile; fileRef = C320BA9116E5A5550056D8C9 /* WHKarma.m */; };
 		C320BA9516E5A8EA0056D8C9 /* WHLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = C320BA9316E5A8E90056D8C9 /* WHLocalStorage.h */; };
 		C320BA9616E5A8EA0056D8C9 /* WHLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C320BA9416E5A8EA0056D8C9 /* WHLocalStorage.m */; };
@@ -75,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C304433416E6DD9B005DA8F3 /* WHJoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHJoin.h; sourceTree = "<group>"; };
+		C304433516E6DD9B005DA8F3 /* WHJoin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHJoin.m; sourceTree = "<group>"; };
 		C320BA9016E5A5550056D8C9 /* WHKarma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHKarma.h; sourceTree = "<group>"; };
 		C320BA9116E5A5550056D8C9 /* WHKarma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHKarma.m; sourceTree = "<group>"; };
 		C320BA9316E5A8E90056D8C9 /* WHLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLocalStorage.h; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 				C320BA9116E5A5550056D8C9 /* WHKarma.m */,
 				C320BA9716E5AB050056D8C9 /* WHKarmaInfo.h */,
 				C320BA9816E5AB050056D8C9 /* WHKarmaInfo.m */,
+				C304433416E6DD9B005DA8F3 /* WHJoin.h */,
+				C304433516E6DD9B005DA8F3 /* WHJoin.m */,
 				C3E318891544F610001F9EFE /* Supporting Files */,
 			);
 			path = WHCore;
@@ -376,6 +381,7 @@
 				C340498D16E504F80086BD5F /* WHAbout.m in Sources */,
 				C320BA9216E5A5550056D8C9 /* WHKarma.m in Sources */,
 				C320BA9916E5AB050056D8C9 /* WHKarmaInfo.m in Sources */,
+				C304433616E6DD9B005DA8F3 /* WHJoin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
