@@ -35,5 +35,6 @@
 - (id)initWithString:(NSString *)string;
 
 - (void)respond:(NSString *)message;
+- (void)respondWithFormat:(NSString *)message, ...;
 
 @end

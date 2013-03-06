@@ -160,4 +160,15 @@
 	[[IRCBot sharedBot] write:@"PRIVMSG %@ :%@", self.responseTarget, message];
 }
 
+- (void)respondWithFormat:(NSString *)message, ... {
+	va_list args;
+	va_start(args, message);
+	
+	NSString *string = [[NSString alloc] initWithFormat:message arguments:args];
+	
+	va_end(args);
+	
+	[self respond:string];
+}
+
 @end
