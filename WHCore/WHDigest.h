@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 iSpeech, Inc. All rights reserved.
 //
 
-#import <Whooves/Whooves.h>
+#import "WHPlugin.h"
 
 @interface WHDigest : WHPlugin
 

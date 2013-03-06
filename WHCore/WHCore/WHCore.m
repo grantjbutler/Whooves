@@ -13,6 +13,8 @@
 #import "WHAbout.h"
 #import "WHKarma.h"
 #import "WHJoin.h"
+#import "WHDigest.h"
+#import "WHLeave.h"
 
 @implementation WHCore
 
@@ -20,6 +22,8 @@
 	[[WHPluginManager sharedManager] registerClass:[WHAbout class]];
 	[[WHPluginManager sharedManager] registerClass:[WHKarma class]];
 	[[WHPluginManager sharedManager] registerClass:[WHJoin class]];
+	[[WHPluginManager sharedManager] registerClass:[WHDigest class]];
+	[[WHPluginManager sharedManager] registerClass:[WHLeave class]];
 }
 
 @end

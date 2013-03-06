@@ -138,6 +138,8 @@ NSArray *ShuffleArray(NSArray *array) {
 		}
 	}
 	
+	[self.localStorage synchronize];
+	
 	[message respond:[NSString stringWithFormat:@"Karma for %@ is now %ld.", username, info.karma]];
 	
 	return YES;
