@@ -109,6 +109,12 @@
 	}
 	
 	[self connectToHost:[settings objectForKey:@"host"] port:[[settings objectForKey:@"port"] intValue]];
+	
+	if([settings objectForKey:@"channels"] && [[settings objectForKey:@"channels"] isKindOfClass:[NSArray class]]) {
+		for(NSString *channel in [settings objectForKey:@"channels"]) {
+			[self join:channel];
+		}
+	}
 }
 
 - (void)connectToHost:(NSString *)host port:(NSUInteger)port {

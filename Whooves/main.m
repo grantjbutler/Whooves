@@ -37,7 +37,7 @@ __attribute__((noreturn)) int main (int argc, const char * argv[])  {
 		[[WHPluginManager sharedManager] reloadPlugins];
 		
 //#ifdef DEBUG
-		[bot join:@"#bronycon-spoilers"];
+//		[bot join:@"#bronycon-spoilers"];
 //#else
 //		[bot join:@"#reddit-mlp"];
 //#endif
