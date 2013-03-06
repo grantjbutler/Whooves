@@ -130,7 +130,16 @@
 	}
 	
 	for(WHPlugin *plugin in p_pluginRegistry) {
-		if(![plugin shouldHandleMessage:message]) {
+		BOOL shouldHandle = YES;
+		
+		@try {
+			shouldHandle = [plugin shouldHandleMessage:message];
+		} @catch (NSException *exception) {
+			// TODO: Log the exception.
+			NSLog(@"%@", exception);
+		}
+		
+		if(!shouldHandle) {
 			return YES; // We didn't do anything, but we need to swallow the message.
 		}
 	}
@@ -143,7 +152,17 @@
 		}
 		
 		if([plugin respondsToSelector:@selector(handleMessage:)]) {
-			if([plugin handleMessage:message]) {
+			BOOL wasHandled = YES;
+			
+			@try {
+				wasHandled = [plugin handleMessage:message];
+			}
+			@catch (NSException *exception) {
+				// TODO: Handle this log.
+				NSLog(@"%@", exception);
+			}
+			
+			if(wasHandled) {
 				return YES;
 			}
 		}
@@ -154,14 +173,33 @@
 
 - (void)havePluginsHandleRawMessage:(IRCMessage *)message {
 	for(WHPlugin *plugin in p_pluginRegistry) {
-		if(![plugin shouldHandleMessage:message]) {
-			return; // We didn't do anything, but we need to swallow the message.
+		BOOL shouldHandle = YES;
+		
+		@try {
+			shouldHandle = [plugin shouldHandleMessage:message];
+		} @catch (NSException *exception) {
+			// TODO: Log the exception.
+			NSLog(@"%@", exception);
+		}
+		
+		if(!shouldHandle) {
+			return;
 		}
 	}
 	
 	for(WHPlugin *plugin in p_pluginRegistry) {
 		if([plugin respondsToSelector:@selector(handleRawMessage:)]) {
-			if([plugin handleRawMessage:message]) {
+			BOOL wasHandled = YES;
+			
+			@try {
+				wasHandled = [plugin handleRawMessage:message];
+			}
+			@catch (NSException *exception) {
+				// TODO: Handle this log.
+				NSLog(@"%@", exception);
+			}
+			
+			if(wasHandled) {
 				return;
 			}
 		}
