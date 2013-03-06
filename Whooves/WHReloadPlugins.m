@@ -17,7 +17,7 @@
 
 - (BOOL)handleMessage:(IRCMessage *)message {
 	if(![message senderIsOwner]) {
-		return NO;
+		return YES;
 	}
 	
 	[[WHPluginManager sharedManager] reloadPlugins];
