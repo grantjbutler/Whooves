@@ -9,10 +9,24 @@
 #import "WHPlugin+Private.h"
 #import "WHPluginManager.h"
 
+static NSString *kWHPluginLocalStoragePath = nil;
+
 @implementation WHPlugin {
 	NSRegularExpression *_commandRegex;
 	
 	WHLocalStorage *_localStorage;
+}
+
++ (void)initialize {
+	if(self == [WHPlugin class]) {
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+		NSString *appSupport = [[paths lastObject] stringByAppendingPathComponent:@"Whooves"];
+		kWHPluginLocalStoragePath = [appSupport stringByAppendingPathComponent:@"LocalStorage"];
+		
+		if(![[NSFileManager defaultManager] fileExistsAtPath:kWHPluginLocalStoragePath]) {
+			[[NSFileManager defaultManager] createDirectoryAtPath:kWHPluginLocalStoragePath withIntermediateDirectories:YES attributes:nil error:nil];
+		}
+	}
 }
 
 - (BOOL)shouldHandleMessage:(IRCMessage *)message {
@@ -49,10 +63,8 @@
 
 - (WHLocalStorage *)localStorage {
 	if(!_localStorage) {
-		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-		NSString *appSupport = [[paths lastObject] stringByAppendingPathComponent:@"Whooves"];
-		NSString *localStoragePath = [appSupport stringByAppendingPathComponent:@"LocalStorage"];
-		NSString *pluginStoragePath = [localStoragePath stringByAppendingPathComponent:NSStringFromClass([self class])];
+		NSString *pluginStoragePath = [kWHPluginLocalStoragePath stringByAppendingPathComponent:NSStringFromClass([self class])];
+		pluginStoragePath = [pluginStoragePath stringByAppendingPathExtension:@"lstorage"];
 		
 		_localStorage = [[WHLocalStorage alloc] initWithPath:pluginStoragePath];
 	}
